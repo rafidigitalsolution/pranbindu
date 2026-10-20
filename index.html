@@ -14,9 +14,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-    <!-- Firebase SDKs (Compat version for stability) -->
+    <!-- Firebase SDKs (Realtime Database Supported) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
     <script>
         tailwind.config = {
@@ -46,7 +46,6 @@
             color: #1E293B; 
         }
 
-        /* Glassmorphism Styles */
         .glass-card { 
             background: rgba(255, 255, 255, 0.95); 
             backdrop-filter: blur(20px); 
@@ -66,7 +65,6 @@
             outline: none;
         }
 
-        /* Glowing Animated Buttons */
         .btn-glow-red {
             background: linear-gradient(135deg, #E53935 0%, #B71C1C 100%);
             transition: all 0.3s ease;
@@ -149,8 +147,6 @@
 
         <!-- ================= HOME VIEW ================= -->
         <div id="view-home" class="space-y-12">
-            
-            <!-- Hero Banner -->
             <div class="text-center py-4 sm:py-8">
                 <span class="bg-red-50 text-brand-red border border-red-200 px-4 py-1.5 rounded-full text-xs font-bold inline-block mb-4 shadow-sm">
                     <i class="fa-solid fa-heart-pulse mr-1 animate-pulse"></i> বড়াইগ্রামের ডিজিটাল ব্লাড নেটওয়ার্ক
@@ -168,7 +164,6 @@
                 </a>
             </div>
 
-            <!-- Action Buttons -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
                 <button onclick="switchTab('register')" class="btn-glow-red text-white p-7 sm:p-8 rounded-3xl text-left flex items-center gap-6 relative overflow-hidden group">
                     <div class="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-3xl shrink-0 group-hover:scale-110 transition duration-300">
@@ -191,7 +186,6 @@
                 </button>
             </div>
 
-            <!-- Quick Profile Update Banner -->
             <div class="glass-card p-6 rounded-3xl max-w-3xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
                 <div>
                     <h4 class="text-base font-bold text-gray-900 flex items-center gap-2">
@@ -204,7 +198,6 @@
                 </button>
             </div>
 
-            <!-- Stats -->
             <div class="grid grid-cols-3 gap-4 max-w-3xl mx-auto text-center">
                 <div class="glass-card p-5 rounded-2xl">
                     <h3 class="text-2xl sm:text-4xl font-black text-brand-red" id="statDonors">0</h3>
@@ -219,7 +212,6 @@
                     <p class="text-xs text-gray-500 font-semibold mt-1">বিনামূল্যে সেবা</p>
                 </div>
             </div>
-
         </div>
 
         <!-- ================= REGISTRATION FORM ================= -->
@@ -233,7 +225,6 @@
             </div>
 
             <form id="donorRegisterForm" onsubmit="handleDonorSubmit(event)" class="space-y-4">
-                <!-- Instant Photo Compress Field -->
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1">রক্তদাতার ছবি (ঐচ্ছিক - সিলেক্ট করলে সাথে সাথে কমপ্রেস হবে)</label>
                     <div id="dropZone" onclick="document.getElementById('donorPhoto').click()" class="border-2 border-dashed border-red-200 rounded-2xl p-4 text-center cursor-pointer hover:border-brand-red transition bg-white/60 relative">
@@ -323,8 +314,6 @@
         <!-- ================= CARD RESULT VIEW ================= -->
         <div id="view-card" class="hidden max-w-xl mx-auto text-center space-y-6">
             <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-4">
-                
-                <!-- Instant Confirmation Notice -->
                 <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-center">
                     <div class="w-12 h-12 bg-emerald-600 text-white rounded-full flex items-center justify-center mx-auto mb-2 text-2xl shadow-md">
                         <i class="fa-solid fa-check"></i>
@@ -333,9 +322,7 @@
                     <p class="text-xs text-gray-600 font-semibold mt-1">নিচে আপনার ডিজিটাল ডোনার সোশ্যাল পোস্টকার্ডটি তৈরি হয়েছে।</p>
                 </div>
 
-                <!-- Unique Digital Postcard Banner -->
                 <div id="postcard" class="w-[320px] h-[340px] sm:w-[380px] sm:h-[400px] mx-auto bg-gradient-to-br from-red-600 via-red-800 to-red-950 text-white rounded-3xl p-6 flex flex-col justify-between shadow-2xl relative overflow-hidden border-4 border-amber-400/50">
-                    
                     <div class="flex justify-between items-start">
                         <div class="text-left">
                             <p class="text-xs font-black tracking-widest text-amber-300 uppercase">প্রাণবিন্দু</p>
@@ -500,7 +487,6 @@
 
         <!-- ================= ADMIN PANEL ================= -->
         <div id="view-admin" class="hidden space-y-6">
-            
             <div class="glass-card p-6 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-12 bg-red-100 text-brand-red rounded-2xl flex items-center justify-center text-2xl font-black shadow-sm">
@@ -522,7 +508,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                
                 <div class="glass-card p-4 rounded-3xl space-y-2 h-fit">
                     <button onclick="switchAdminSection('dashboard')" id="adminNav-dashboard" class="w-full text-left px-4 py-3 rounded-xl font-bold text-xs flex items-center gap-3 bg-brand-red text-white transition shadow-sm">
                         <i class="fa-solid fa-chart-pie text-sm"></i> ড্যাশবোর্ড ওভারভিউ
@@ -545,7 +530,6 @@
                 </div>
 
                 <div class="md:col-span-3 space-y-6">
-                    
                     <div id="adminSec-dashboard" class="space-y-6">
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div class="glass-card p-5 rounded-2xl border-l-4 border-brand-red">
@@ -570,14 +554,12 @@
                         </div>
                     </div>
 
-                    <!-- Filtered Tables for PDF and Display -->
                     <div id="adminSec-tables" class="hidden space-y-4">
                         <div class="glass-card p-3 rounded-2xl flex items-center gap-2">
                             <i class="fa-solid fa-magnifying-glass text-gray-400 pl-2"></i>
                             <input type="text" id="adminSearch" onkeyup="filterAdminData()" placeholder="নাম, রক্তের গ্রুপ বা পৌরসভা/ইউনিয়ন দিয়ে খুঁজুন..." class="w-full text-xs outline-none bg-transparent font-medium">
                         </div>
 
-                        <!-- Structured Export Container: 1.ছবি 2.নাম 3.রক্তের গ্রুপ 4.মোবাইল 5.বয়স 6.ঠিকানা -->
                         <div id="pdfPrintArea" class="glass-card rounded-3xl overflow-hidden border border-gray-100 bg-white p-2">
                             <div class="p-4 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
                                 <h3 class="font-bold text-sm text-gray-800" id="adminTableTitle">রক্তদাতা তালিকা</h3>
@@ -618,7 +600,6 @@
                     </div>
 
                 </div>
-
             </div>
         </div>
 
@@ -691,19 +672,15 @@
     <div id="authModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4">
         <div class="glass-card bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative">
             <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
-            
             <h3 id="authTitle" class="text-lg font-bold text-gray-800 mb-4 text-center">লগইন করুন</h3>
-            
             <div class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1">পাসওয়ার্ড দিন</label>
                     <input type="password" id="authPass" class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium" placeholder="••••••••">
                 </div>
-
                 <button onclick="submitAuth()" class="w-full btn-glow-red text-white py-3 rounded-xl font-bold text-xs shadow-md">
                     প্রবেশ করুন
                 </button>
-
                 <div id="managerCallNotice" class="hidden text-center pt-2 border-t border-gray-100">
                     <p class="text-[11px] text-gray-500 mb-2">আপনি ম্যানেজার না হলে নিবন্ধনের জন্য কল করুন:</p>
                     <a href="tel:01887488674" class="inline-flex items-center gap-2 bg-green-100 text-brand-green px-4 py-2 rounded-xl text-xs font-bold hover:bg-brand-green hover:text-white transition">
@@ -734,23 +711,24 @@
         </div>
     </footer>
 
-    <!-- JS Application Logic Script -->
+    <!-- JS Realtime Database Logic -->
     <script>
-        // Firebase Configuration (Realtime Firestore Init)
+        // Updated Realtime Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAGQdBCdbeJUI6SenXTR3qRUFVDNk8yYBg",
             authDomain: "pranbindu-6a704.firebaseapp.com",
+            databaseURL: "https://pranbindu-6a704-default-rtdb.firebaseio.com",
             projectId: "pranbindu-6a704",
             storageBucket: "pranbindu-6a704.firebasestorage.app",
             messagingSenderId: "866483569888",
-            appId: "1:866483569888:web:b32236736a884df357fc85",
-            measurementId: "G-B13DRKTDPX"
+            appId: "1:866483569888:web:f6738f7bda4b6edb57fc85",
+            measurementId: "G-Z31SJG9WNN"
         };
 
         if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
+        const rtdb = firebase.database(); // Initialized Realtime Database
 
-        // Application State
+        // App States
         let currentAuthMode = '';
         let localPhotoBase64 = '';
         let allDonorsCache = [];
@@ -760,7 +738,6 @@
         let tempUnavailable = JSON.parse(localStorage.getItem('tempUnavailable') || '{}');
         let currentManagerTab = 'ready';
 
-        // Helper: Age Calculation
         function calculateAge(dobString) {
             if (!dobString) return 'N/A';
             const dob = new Date(dobString);
@@ -769,7 +746,6 @@
             return Math.abs(ageDate.getUTCFullYear() - 1970);
         }
 
-        // Navigation
         function switchTab(viewId) {
             document.querySelectorAll('main > div').forEach(el => el.classList.add('hidden'));
             document.getElementById(`view-${viewId}`).classList.remove('hidden');
@@ -781,7 +757,7 @@
             document.getElementById('dropdownMenu').classList.toggle('hidden');
         }
 
-        // Instant Image Compression on File Selection
+        // Fast Photo Compress Logic
         function handlePhotoSelect(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -797,7 +773,7 @@
                     let width = img.width;
                     let height = img.height;
                     
-                    const maxDim = 120; // Reduced for sub-10KB output
+                    const maxDim = 120;
                     if (width > height) {
                         if (width > maxDim) {
                             height *= maxDim / width;
@@ -817,7 +793,7 @@
 
                     localPhotoBase64 = canvas.toDataURL('image/jpeg', 0.35);
                     spinner.classList.add('hidden');
-                    document.getElementById('uploadText').innerText = file.name + ' (১০ KB এর মধ্যে কমপ্রেসড)';
+                    document.getElementById('uploadText').innerText = file.name + ' (১০ KB এর নিচে কমপ্রেসড)';
                 };
                 img.src = evt.target.result;
             };
@@ -830,7 +806,7 @@
             }
         }
 
-        // Realtime Firestore Donor Submission
+        // Realtime Database Registration Function
         async function handleDonorSubmit(e) {
             e.preventDefault();
             const btn = document.getElementById('submitRegBtn');
@@ -840,9 +816,9 @@
             const phone = document.getElementById('regPhone').value.trim();
 
             try {
-                // Check Duplicate
-                const existingQuery = await db.collection('donors').where('phone', '==', phone).get();
-                if (!existingQuery.empty) {
+                // Check Duplicate Phone in Realtime Database
+                const snapshot = await rtdb.ref('donors').orderByChild('phone').equalTo(phone).once('value');
+                if (snapshot.exists()) {
                     alert('⚠️ এই মোবাইল নম্বর দিয়ে ইতিমধ্যে একজন রক্তদাতা নিবন্ধিত রয়েছেন!');
                     btn.disabled = false;
                     btn.innerHTML = `<span>নিবন্ধন সম্পন্ন করুন</span>`;
@@ -862,19 +838,19 @@
                     createdAt: new Date().toISOString()
                 };
 
-                const docRef = await db.collection('donors').add(donorData);
+                // Push Data into Realtime Database
+                const newRef = rtdb.ref('donors').push();
+                await newRef.set(donorData);
                 
-                // Show instant Confirmation and Postcard
-                renderPostcard(donorData, docRef.id);
+                renderPostcard(donorData, newRef.key);
                 switchTab('card');
                 
-                // Reset form & state
                 document.getElementById('donorRegisterForm').reset();
                 localPhotoBase64 = '';
                 document.getElementById('uploadText').innerText = 'ছবি আপলোড করতে এখানে ক্লিক করুন';
 
             } catch (err) {
-                alert('ডাটাবেজ সেভ ত্রুটি: ' + err.message);
+                alert('ডাটাবেজ কানেকশন বা সেভ ত্রুটি: ' + err.message);
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = `<span>নিবন্ধন সম্পন্ন করুন</span>`;
@@ -887,7 +863,7 @@
             document.getElementById('cardGroupBadge').innerText = data.group;
             document.getElementById('cardLocation').innerText = `${data.union}, বড়াইগ্রাম`;
             document.getElementById('cardPhoto').src = data.photo;
-            document.getElementById('cardId').innerText = `PB-${id.slice(0,4).toUpperCase()}`;
+            document.getElementById('cardId').innerText = `PB-${id.slice(-4).toUpperCase()}`;
         }
 
         function downloadCard() {
@@ -900,7 +876,7 @@
             });
         }
 
-        // Blood Request Form Submit
+        // Realtime Database Request Function
         async function handleRequestSubmit(e) {
             e.preventDefault();
             const btn = document.getElementById('submitReqBtn');
@@ -919,32 +895,31 @@
             };
 
             try {
-                await db.collection('requests').add(reqData);
+                await rtdb.ref('requests').push(reqData);
                 switchTab('request-confirm');
                 document.getElementById('bloodRequestForm').reset();
             } catch (err) {
-                alert('অনুরোধ সেভ করতে ব্যর্থ: ' + err.message);
+                alert('অনুরোধ সেভ করতে সমস্যা: ' + err.message);
             } finally {
                 btn.disabled = false;
             }
         }
 
-        // Search Donor for Profile Update
         async function searchDonorForUpdate() {
             const phone = document.getElementById('updateSearchPhone').value.trim();
             if(!phone) return alert('ফোন নম্বর দিন!');
             
-            const snapshot = await db.collection('donors').where('phone', '==', phone).get();
-            if (snapshot.empty) {
+            const snapshot = await rtdb.ref('donors').orderByChild('phone').equalTo(phone).once('value');
+            if (!snapshot.exists()) {
                 alert('কোনো রক্তদাতার তথ্য পাওয়া যায়নি!');
                 return;
             }
-            snapshot.forEach(doc => {
-                const d = doc.data();
+            snapshot.forEach(child => {
+                const d = child.val();
                 document.getElementById('updateFormContainer').classList.remove('hidden');
                 document.getElementById('updatePreviewName').innerText = d.name;
                 document.getElementById('updatePreviewPhoto').src = d.photo;
-                document.getElementById('updateFormContainer').dataset.id = doc.id;
+                document.getElementById('updateFormContainer').dataset.id = child.key;
             });
         }
 
@@ -953,12 +928,11 @@
             const newDate = document.getElementById('updateNewDate').value;
             if(!newDate) return alert('তারিখ নির্বাচন করুন!');
 
-            await db.collection('donors').doc(docId).update({ lastDonate: newDate });
+            await rtdb.ref(`donors/${docId}`).update({ lastDonate: newDate });
             alert('সফলভাবে তথ্য আপডেট করা হয়েছে!');
             switchTab('home');
         }
 
-        // Auth Systems
         function openAuthModal(mode) {
             currentAuthMode = mode;
             toggleMenu();
@@ -1008,12 +982,24 @@
             return diffDays >= 90;
         }
 
-        // Admin Dashboard Loader
+        // Realtime Data Fetch for Admin
         async function loadAdminDashboard() {
-            const donorsSnap = await db.collection('donors').get();
-            const reqSnap = await db.collection('requests').get();
-            allDonorsCache = donorsSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            allRequestsCache = reqSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            const donorsSnap = await rtdb.ref('donors').once('value');
+            const reqSnap = await rtdb.ref('requests').once('value');
+            
+            allDonorsCache = [];
+            if(donorsSnap.exists()) {
+                donorsSnap.forEach(child => {
+                    allDonorsCache.push({ id: child.key, ...child.val() });
+                });
+            }
+
+            allRequestsCache = [];
+            if(reqSnap.exists()) {
+                reqSnap.forEach(child => {
+                    allRequestsCache.push({ id: child.key, ...child.val() });
+                });
+            }
 
             document.getElementById('dashTotalDonors').innerText = allDonorsCache.length;
             document.getElementById('dashTotalRequests').innerText = allRequestsCache.length;
@@ -1049,7 +1035,6 @@
             }
         }
 
-        // Structured Admin Table View: 1.ছবি 2.নাম 3.রক্তের গ্রুপ 4.মোবাইল 5.বয়স 6.ঠিকানা
         function renderAdminDonorsTable(data, customTitle = 'সকল রক্তদাতা তালিকা') {
             currentDisplayedDonors = data;
             document.getElementById('adminTableTitle').innerText = customTitle;
@@ -1123,8 +1108,8 @@
         }
 
         async function viewDetail(id) {
-            const doc = await db.collection('donors').doc(id).get();
-            const d = doc.data();
+            const snapshot = await rtdb.ref(`donors/${id}`).once('value');
+            const d = snapshot.val();
             const age = calculateAge(d.dob);
             document.getElementById('detailContent').innerHTML = `
                 <img src="${d.photo}" class="w-20 h-20 rounded-full mx-auto border shadow-sm object-cover">
@@ -1143,7 +1128,7 @@
 
         async function deleteDonor(id) {
             if (confirm('আপনি কি নিশ্চিত এই রক্তদাতাকে ডিলিট করবেন?')) {
-                await db.collection('donors').doc(id).delete();
+                await rtdb.ref(`donors/${id}`).remove();
                 loadAdminDashboard();
             }
         }
@@ -1183,7 +1168,6 @@
             renderManagerAdminList();
         }
 
-        // Bug-free PDF Export Function
         function exportToPDF() {
             const element = document.getElementById('pdfPrintArea');
             html2canvas(element, { scale: 2, useCORS: true }).then(canvas => {
@@ -1196,10 +1180,15 @@
             });
         }
 
-        // Manager Panel Data Handler
+        // Realtime Data Fetch for Manager
         async function loadManagerData() {
-            const snapshot = await db.collection('donors').get();
-            allDonorsCache = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            const snapshot = await rtdb.ref('donors').once('value');
+            allDonorsCache = [];
+            if(snapshot.exists()) {
+                snapshot.forEach(child => {
+                    allDonorsCache.push({ id: child.key, ...child.val() });
+                });
+            }
             switchManagerTab('ready');
         }
 
@@ -1275,15 +1264,15 @@
             renderManagerTable(filtered);
         }
 
-        // Stats Counter
         async function loadStats() {
             try {
-                const donorsSnap = await db.collection('donors').get();
-                const reqSnap = await db.collection('requests').get();
-                document.getElementById('statDonors').innerText = donorsSnap.size;
-                document.getElementById('statRequests').innerText = reqSnap.size;
+                const donorsSnap = await rtdb.ref('donors').once('value');
+                const reqSnap = await rtdb.ref('requests').once('value');
+                
+                document.getElementById('statDonors').innerText = donorsSnap.exists() ? donorsSnap.numChildren() : 0;
+                document.getElementById('statRequests').innerText = reqSnap.exists() ? reqSnap.numChildren() : 0;
             } catch(e) {
-                console.log("Stats loading...", e);
+                console.log("Stats loading error:", e);
             }
         }
 
