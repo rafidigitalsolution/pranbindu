@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>প্রাণবিন্দু - রক্তদান ব্যবস্থাপনা সিস্টেম</title>
+    <title>প্রাণবিন্দু - বড়াইগ্রাম রক্তদান ব্যবস্থাপনা সিস্টেম</title>
     
-    <!-- Google Fonts & Icons & Tailwind CDN -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts, Icons & Tailwind CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- html2canvas and jspdf for Downloading Cards & PDFs -->
+    <!-- html2canvas & jspdf for Card Download & PDF Export -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -42,75 +42,76 @@
     <style>
         body { 
             font-family: 'Hind Siliguri', sans-serif; 
-            background: #ffffff; 
-            color: #1A1A1A; 
+            background: #F8FAFC; 
+            color: #1E293B; 
         }
 
-        /* Glassmorphism Styles */
+        /* Premium Glassmorphism */
         .glass-card { 
-            background: rgba(255, 255, 255, 0.75); 
-            backdrop-filter: blur(16px); 
-            -webkit-backdrop-filter: blur(16px); 
-            border: 1px solid rgba(229, 57, 53, 0.12); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            background: rgba(255, 255, 255, 0.90); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            border: 1px solid rgba(226, 232, 240, 0.8); 
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
         }
 
         .glass-input {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: #FFFFFF;
+            border: 1.5px solid #E2E8F0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .glass-input:focus {
             border-color: #E53935;
-            box-shadow: 0 0 15px rgba(229, 57, 53, 0.15);
+            box-shadow: 0 0 0 4px rgba(229, 57, 53, 0.12);
+            outline: none;
         }
 
-        /* Smart Animated Buttons */
+        /* Smart Glowing Buttons */
         .btn-glow-red {
             background: linear-gradient(135deg, #E53935 0%, #B71C1C 100%);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 25px -5px rgba(229, 57, 53, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px -4px rgba(229, 57, 53, 0.4);
         }
         .btn-glow-red:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 18px 35px -5px rgba(229, 57, 53, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px -4px rgba(229, 57, 53, 0.5);
         }
 
         .btn-glow-green {
             background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 25px -5px rgba(46, 125, 50, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px -4px rgba(46, 125, 50, 0.4);
         }
         .btn-glow-green:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 18px 35px -5px rgba(46, 125, 50, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px -4px rgba(46, 125, 50, 0.5);
         }
 
         .pulse-call {
             animation: pulse-ring 2s infinite;
         }
         @keyframes pulse-ring {
-            0% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.5); }
-            70% { box-shadow: 0 0 0 18px rgba(229, 57, 53, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.6); }
+            70% { box-shadow: 0 0 0 16px rgba(229, 57, 53, 0); }
             100% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); }
         }
 
         .unavailable-row { 
-            background-color: #FFEBEE !important; 
-            color: #C62828 !important; 
+            background-color: #FEF2F2 !important; 
+            color: #991B1B !important; 
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-red-100 selection:text-red-600 bg-white">
+<body class="min-h-screen flex flex-col justify-between selection:bg-red-100 selection:text-red-600">
 
     <!-- Header -->
-    <header class="bg-white/90 backdrop-blur-md border-b border-gray-100 sticky top-0 z-40">
+    <header class="bg-white/95 backdrop-blur-md border-b border-gray-200 sticky top-0 z-40 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('home')">
                 <img src="https://i.ibb.co.com/MDGxCpjj/b26b0101-8451-41e0-b8f0-942cef3e085f.png" alt="প্রাণবিন্দু" class="h-11 w-auto object-contain">
                 <div>
-                    <h1 class="text-2xl font-black text-brand-red tracking-tight leading-tight">প্রাণবিন্দু</h1>
-                    <p class="text-[10px] text-brand-green font-bold tracking-wide">বড়াইগ্রামের প্রথম ডিজিটাল রক্তদান ব্যবস্থাপনা</p>
+                    <h1 class="text-2xl font-black text-brand-red tracking-tight leading-none">প্রাণবিন্দু</h1>
+                    <p class="text-[10px] text-brand-green font-bold tracking-wide mt-1">বড়াইগ্রামের স্মার্ট ডিজিটাল রক্তদান নেটওয়ার্ক</p>
                 </div>
             </div>
 
@@ -120,11 +121,11 @@
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </button>
                 <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-2xl border border-gray-100 z-50 overflow-hidden">
-                    <button onclick="openAuthModal('admin')" class="w-full text-left px-5 py-3.5 hover:bg-red-50 text-gray-800 font-semibold flex items-center gap-3 border-b border-gray-100">
-                        <i class="fa-solid fa-user-shield text-brand-red text-lg"></i> এডমিন প্যানেল
+                    <button onclick="openAuthModal('admin')" class="w-full text-left px-5 py-3.5 hover:bg-red-50 text-gray-800 font-semibold flex items-center gap-3 border-b border-gray-100 text-xs">
+                        <i class="fa-solid fa-user-shield text-brand-red text-base"></i> এডমিন প্যানেল
                     </button>
-                    <button onclick="openAuthModal('manager')" class="w-full text-left px-5 py-3.5 hover:bg-green-50 text-gray-800 font-semibold flex items-center gap-3">
-                        <i class="fa-solid fa-user-gear text-brand-green text-lg"></i> ম্যানেজার লগইন
+                    <button onclick="openAuthModal('manager')" class="w-full text-left px-5 py-3.5 hover:bg-green-50 text-gray-800 font-semibold flex items-center gap-3 text-xs">
+                        <i class="fa-solid fa-user-gear text-brand-green text-base"></i> ম্যানেজার লগইন
                     </button>
                 </div>
             </div>
@@ -132,13 +133,13 @@
     </header>
 
     <!-- Smart Animated Ticker / Marquee Bar -->
-    <div class="bg-gradient-to-r from-red-600 via-red-500 to-green-600 text-white py-2 text-xs font-semibold overflow-hidden shadow-sm">
+    <div class="bg-gradient-to-r from-red-600 via-brand-red to-green-700 text-white py-2 text-xs font-semibold overflow-hidden shadow-sm">
         <div class="max-w-6xl mx-auto px-4 flex items-center gap-2">
-            <span class="bg-white text-brand-red font-bold px-2 py-0.5 rounded text-[10px] uppercase shrink-0 flex items-center gap-1">
+            <span class="bg-white text-brand-red font-extrabold px-2 py-0.5 rounded text-[10px] uppercase shrink-0 flex items-center gap-1">
                 <i class="fa-solid fa-bullhorn animate-bounce"></i> আপডেট
             </span>
-            <marquee class="tracking-wide" behavior="scroll" direction="left" scrollamount="6">
-                🩸 প্রাণবিন্দু — বড়াইগ্রামের প্রথম ডিজিটাল রক্তদাতা ম্যানেজমেন্ট সফটওয়্যার। এক ক্লিকে রক্তের অনুরোধ জানান অথবা নিজের রেজিস্ট্রেশন করে জীবন বাঁচাতে অংশ নিন!
+            <marquee class="tracking-wide font-medium" behavior="scroll" direction="left" scrollamount="6">
+                🩸 প্রাণবিন্দু — বড়াইগ্রাম উপজেলার প্রথম ডিজিটাল রক্তদাতা ম্যানেজমেন্ট সফটওয়্যার। এক ক্লিকে রক্তের অনুরোধ জানান অথবা রক্তদাতা হিসেবে নাম রেজিস্টার করে মানুষের জীবন বাঁচান!
             </marquee>
         </div>
     </div>
@@ -150,15 +151,15 @@
         <div id="view-home" class="space-y-12">
             
             <!-- Hero Banner & Emergency Hotline -->
-            <div class="text-center py-6">
-                <span class="bg-red-50 text-brand-red border border-red-100 px-4 py-1.5 rounded-full text-xs font-bold inline-block mb-4">
-                    <i class="fa-solid fa-heart-pulse mr-1 animate-pulse"></i> মানবসেবায় ডিজিটাল বিপ্লব
+            <div class="text-center py-4 sm:py-8">
+                <span class="bg-red-50 text-brand-red border border-red-200 px-4 py-1.5 rounded-full text-xs font-bold inline-block mb-4 shadow-sm">
+                    <i class="fa-solid fa-heart-pulse mr-1 animate-pulse"></i> বড়াইগ্রামের ডিজিটাল ব্লাড নেটওয়ার্ক
                 </span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold text-gray-900 mb-3 tracking-tight leading-tight">
+                <h2 class="text-3xl sm:text-5xl font-black text-gray-900 mb-3 tracking-tight leading-tight">
                     এক ফোটা রক্ত, একটি নতুন জীবন
                 </h2>
-                <p class="text-gray-500 max-w-xl mx-auto text-sm sm:text-base mb-8">
-                    বড়াইগ্রাম উপজেলার যেকোনো ইমার্জেন্সি রক্তের প্রয়োজনে বা স্বেচ্ছায় রক্তদানে যুক্ত হোন আমাদের সুরক্ষিত ডিজিটাল প্ল্যাটফর্মে।
+                <p class="text-gray-600 max-w-xl mx-auto text-sm sm:text-base mb-8 font-medium">
+                    বড়াইগ্রাম উপজেলার যেকোনো ইমার্জেন্সি রক্তের প্রয়োজনে বা স্বেচ্ছায় রক্তদানে যুক্ত হোন আমাদের ডিজিটাল প্ল্যাটফর্মে।
                 </p>
 
                 <!-- Hidden Number Emergency Button -->
@@ -170,23 +171,23 @@
 
             <!-- Two Ultra-Smart Animated Primary Buttons -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-                <button onclick="switchTab('register')" class="btn-glow-red text-white p-8 rounded-3xl text-left flex items-center gap-6 relative overflow-hidden group">
+                <button onclick="switchTab('register')" class="btn-glow-red text-white p-7 sm:p-8 rounded-3xl text-left flex items-center gap-6 relative overflow-hidden group">
                     <div class="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-3xl shrink-0 group-hover:scale-110 transition duration-300">
                         <i class="fa-solid fa-user-plus"></i>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold mb-1">রক্তদান রেজিস্ট্রেশন</h3>
-                        <p class="text-xs text-red-100 opacity-90">স্বচ্ছায় রক্তদাতা হিসেবে যুক্ত হতে ডিজিটাল ফর্মটি পূরণ করুন</p>
+                        <h3 class="text-2xl font-black mb-1">রক্তদান রেজিস্ট্রেশন</h3>
+                        <p class="text-xs text-red-100 opacity-90 font-medium">স্বচ্ছায় রক্তদাতা হিসেবে নিবন্ধিত হতে ফর্মটি পূরণ করুন</p>
                     </div>
                 </button>
 
-                <button onclick="switchTab('request')" class="btn-glow-green text-white p-8 rounded-3xl text-left flex items-center gap-6 relative overflow-hidden group">
+                <button onclick="switchTab('request')" class="btn-glow-green text-white p-7 sm:p-8 rounded-3xl text-left flex items-center gap-6 relative overflow-hidden group">
                     <div class="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-3xl shrink-0 group-hover:scale-110 transition duration-300">
                         <i class="fa-solid fa-hand-holding-medical"></i>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold mb-1">রক্তের অনুরোধ জানান</h3>
-                        <p class="text-xs text-green-100 opacity-90">রোগীর জন্য জরুরী রক্তের প্রয়োজন হলে এখানে ক্লিক করুন</p>
+                        <h3 class="text-2xl font-black mb-1">রক্তের অনুরোধ জানান</h3>
+                        <p class="text-xs text-green-100 opacity-90 font-medium">রোগীর জন্য জরুরী রক্তের প্রয়োজন হলে এখানে ক্লিক করুন</p>
                     </div>
                 </button>
             </div>
@@ -197,9 +198,9 @@
                     <h4 class="text-base font-bold text-gray-900 flex items-center gap-2">
                         <i class="fa-solid fa-rotate text-brand-red"></i> পূর্বে নিবন্ধিত আছেন?
                     </h4>
-                    <p class="text-xs text-gray-500">আপনার শেষ রক্তদানের তারিখ বা প্রোফাইল আপডেট করতে পারেন</p>
+                    <p class="text-xs text-gray-500 font-medium">আপনার শেষ রক্তদানের তারিখ বা প্রোফাইল আপডেট করতে পারেন</p>
                 </div>
-                <button onclick="switchTab('update')" class="bg-gray-900 hover:bg-black text-white px-5 py-2.5 rounded-2xl text-xs font-bold transition shadow-md whitespace-nowrap">
+                <button onclick="switchTab('update')" class="bg-gray-900 hover:bg-black text-white px-6 py-2.5 rounded-2xl text-xs font-bold transition shadow-md whitespace-nowrap">
                     তথ্য আপডেট করুন
                 </button>
             </div>
@@ -226,11 +227,11 @@
                     <h4 class="font-bold text-brand-red text-base mb-3 flex items-center gap-2">
                         <i class="fa-solid fa-circle-check"></i> রক্তদানের কিছু শর্তাবলী
                     </h4>
-                    <ul class="text-xs text-gray-600 space-y-2 list-disc pl-4 leading-relaxed">
+                    <ul class="text-xs text-gray-600 space-y-2 list-disc pl-4 leading-relaxed font-medium">
                         <li>বয়স ১৮ থেকে ৬০ বছরের মধ্যে হতে হবে।</li>
                         <li>ওজন সর্বনিম্ন ৪৫ কেজি হতে হবে।</li>
                         <li>সর্বশেষ রক্তদানের পর ৩ মাস (৯০ দিন) অতিবাহিত হতে হবে।</li>
-                        <li>কোনো বড় জটিল রোগ বা ইনফেকশন থাকা যাবে না।</li>
+                        <li>কোনো বড় ধরনের স্থায়ী স্বাস্থ্য জটিলতা থাকা যাবে না।</li>
                     </ul>
                 </div>
 
@@ -238,34 +239,34 @@
                     <h4 class="font-bold text-brand-green text-base mb-3 flex items-center gap-2">
                         <i class="fa-solid fa-bullseye"></i> মিশন ও ভিশন
                     </h4>
-                    <p class="text-xs text-gray-600 leading-relaxed mb-2">
-                        <strong>মিশন:</strong> বড়াইগ্রাম উপজেলায় রক্তের অভাবে যেন কোনো রোগীর চিকিৎসা ব্যাহত না হয়, তা নিশ্চিত করা।
+                    <p class="text-xs text-gray-600 leading-relaxed mb-2 font-medium">
+                        <strong>মিশন:</strong> বড়াইগ্রাম উপজেলায় রক্তের অভাবে যেন কোনো রোগীর চিকিৎসা বিলম্বিত না হয়।
                     </p>
-                    <p class="text-xs text-gray-600 leading-relaxed">
-                        <strong>ভিশন:</strong> সম্পূর্ণ স্বচ্ছ ও ফ্রি সেবার মাধ্যমে রক্তদাতা ও গ্রহীতার মধ্যে ডিজিটাল মেলবন্ধন তৈরি।
+                    <p class="text-xs text-gray-600 leading-relaxed font-medium">
+                        <strong>ভিশন:</strong> স্মার্ট তথ্য প্রযুক্তির মাধ্যমে সঠিক সময়ে সঠিক রক্তদাতার সন্ধান পৌঁছে দেওয়া।
                     </p>
                 </div>
             </div>
 
         </div>
 
-        <!-- ================= REGISTRATION FORM (GLASSMORPHISM) ================= -->
+        <!-- ================= REGISTRATION FORM (PREMIUM GLASSMORPHISM) ================= -->
         <div id="view-register" class="hidden max-w-2xl mx-auto glass-card p-6 sm:p-10 rounded-3xl">
             <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
                 <div>
                     <h2 class="text-2xl font-black text-brand-red">রক্তদাতা রেজিস্ট্রেশন</h2>
-                    <p class="text-xs text-gray-500">জীবন বাঁচাতে আপনার সঠিক তথ্য দিয়ে ফর্মটি পূরণ করুন</p>
+                    <p class="text-xs text-gray-500 font-medium">জীবন বাঁচাতে সঠিক তথ্য দিয়ে ফর্মটি পূরণ করুন</p>
                 </div>
                 <button onclick="switchTab('home')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
 
             <form id="donorRegisterForm" onsubmit="handleDonorSubmit(event)" class="space-y-4">
-                <!-- Optional Drag & Drop Photo Upload -->
+                <!-- Smart Compressed Photo Upload -->
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">রক্তদাতার ছবি (ঐচ্ছিক - Drag & Drop)</label>
-                    <div id="dropZone" onclick="document.getElementById('donorPhoto').click()" class="border-2 border-dashed border-gray-300 rounded-2xl p-4 text-center cursor-pointer hover:border-brand-red transition bg-white/50">
-                        <i class="fa-solid fa-cloud-arrow-up text-2xl text-gray-400 mb-1"></i>
-                        <p class="text-xs text-gray-500" id="uploadText">ছবি এখানে ড্রপ করুন অথবা ফাইল সিলেক্ট করুন</p>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">রক্তদাতার ছবি (ঐচ্ছিক - অটো ১০ KB এর নিচে কমপ্রেস হবে)</label>
+                    <div id="dropZone" onclick="document.getElementById('donorPhoto').click()" class="border-2 border-dashed border-red-200 rounded-2xl p-4 text-center cursor-pointer hover:border-brand-red transition bg-white/60">
+                        <i class="fa-solid fa-cloud-arrow-up text-2xl text-brand-red mb-1"></i>
+                        <p class="text-xs text-gray-600 font-semibold" id="uploadText">ছবি আপলোড করতে এখানে ক্লিক করুন</p>
                         <input type="file" id="donorPhoto" accept="image/*" class="hidden" onchange="handlePhotoSelect(event)">
                     </div>
                 </div>
@@ -273,11 +274,11 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">পূর্ণ নাম *</label>
-                        <input type="text" id="regName" required class="glass-input w-full rounded-xl p-3 text-sm outline-none" placeholder="আপনার নাম">
+                        <input type="text" id="regName" required class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium" placeholder="আপনার নাম">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">রক্তের গ্রুপ *</label>
-                        <select id="regGroup" required class="glass-input w-full rounded-xl p-3 text-sm outline-none">
+                        <select id="regGroup" required class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium">
                             <option value="">নির্বাচন করুন</option>
                             <option value="A+">A positive (A+)</option>
                             <option value="A-">A negative (A-)</option>
@@ -293,27 +294,28 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">মোবাইল নম্বর *</label>
-                        <input type="tel" id="regPhone" required pattern="[0-9]{11}" class="glass-input w-full rounded-xl p-3 text-sm outline-none" placeholder="017XXXXXXXX">
+                        <label class="block text-xs font-bold text-gray-700 mb-1">মোবাইল নম্বর ( অদ্বিতীয়/Unique ) *</label>
+                        <input type="tel" id="regPhone" required pattern="[0-9]{11}" class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium" placeholder="017XXXXXXXX">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 mb-1">ইউনিয়ন/এলাকা *</label>
-                        <select id="regUnion" required class="glass-input w-full rounded-xl p-3 text-sm outline-none">
-                            <option value="">ইউনিয়ন সিলেক্ট করুন</option>
-                            <option value="বনপাড়া">বনপাড়া</option>
-                            <option value="বড়াইগ্রাম সদর">বড়াইগ্রাম সদর</option>
-                            <option value="জোয়ারী">জোয়ারী</option>
-                            <option value="মাঝগাঁও">মাঝগাঁও</option>
-                            <option value="গোপালপুর">গোপালপুর</option>
-                            <option value="চান্দাই">চান্দাই</option>
-                            <option value="নগর">নগর</option>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">পৌরসভা / ইউনিয়ন *</label>
+                        <select id="regUnion" required class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium">
+                            <option value="">পৌরসভা/ইউনিয়ন নির্বাচন করুন</option>
+                            <option value="বড়াইগ্রাম পৌরসভা">বড়াইগ্রাম পৌরসভা</option>
+                            <option value="বনপাড়া পৌরসভা">বনপাড়া পৌরসভা</option>
+                            <option value="জোয়ারী ইউনিয়ন">জোয়ারী ইউনিয়ন</option>
+                            <option value="মাঝগাঁও ইউনিয়ন">মাঝগাঁও ইউনিয়ন</option>
+                            <option value="গোপালপুর ইউনিয়ন">গোপালপুর ইউনিয়ন</option>
+                            <option value="চান্দাই ইউনিয়ন">চান্দাই ইউনিয়ন</option>
+                            <option value="নগর ইউনিয়ন">নগর ইউনিয়ন</option>
+                            <option value="বড়াইগ্রাম ইউনিয়ন">বড়াইগ্রাম ইউনিয়ন</option>
                         </select>
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1">স্থায়ী ঠিকানা *</label>
-                    <input type="text" id="regPermanentAddress" required class="glass-input w-full rounded-xl p-3 text-sm outline-none" placeholder="গ্রাম/পাড়া, ডাকঘর">
+                    <input type="text" id="regPermanentAddress" required class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium" placeholder="গ্রাম/পাড়া, ডাকঘর">
                 </div>
 
                 <div>
@@ -323,17 +325,17 @@
                             <input type="checkbox" id="sameAddressCheck" onchange="copyAddress()"> স্থায়ী ও বর্তমান ঠিকানা একই
                         </label>
                     </div>
-                    <input type="text" id="regPresentAddress" required class="glass-input w-full rounded-xl p-3 text-sm outline-none" placeholder="বর্তমান বসবাসরত এলাকা">
+                    <input type="text" id="regPresentAddress" required class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium" placeholder="বর্তমান বসবাসরত এলাকা">
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">জন্ম তারিখ *</label>
-                        <input type="date" id="regDob" required class="glass-input w-full rounded-xl p-3 text-sm outline-none">
+                        <input type="date" id="regDob" required class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">শেষ রক্তদানের তারিখ (যদি থাকে)</label>
-                        <input type="date" id="regLastDonate" class="glass-input w-full rounded-xl p-3 text-sm outline-none">
+                        <input type="date" id="regLastDonate" class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium">
                     </div>
                 </div>
 
@@ -345,29 +347,37 @@
 
         <!-- ================= CARD RESULT VIEW ================= -->
         <div id="view-card" class="hidden max-w-xl mx-auto text-center space-y-6">
-            <div class="glass-card p-6 rounded-3xl space-y-4">
-                <h3 class="text-xl font-bold text-brand-green"><i class="fa-solid fa-circle-check"></i> রেজিস্ট্রেশন সফল হয়েছে!</h3>
-                <p class="text-xs text-gray-500">আপনার ডিজিটাল সোশ্যাল মিডিয়া ডোনার পোস্টকার্ড তৈরি হয়ে গেছে।</p>
+            <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-4">
+                
+                <!-- Congratulations Header Notice -->
+                <div class="bg-green-50 border border-green-200 rounded-2xl p-4 text-center">
+                    <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-2 text-2xl shadow-md">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-brand-green">অভিনন্দন! আপনার রেজিস্ট্রেশন সফল হয়েছে।</h3>
+                    <p class="text-xs text-gray-600 font-semibold mt-1">নিচে আপনার ডিজিটাল ডোনার সোশ্যাল পোস্টকার্ডটি প্রদান করা হলো।</p>
+                </div>
 
-                <!-- 1080x1080 Digital Postcard Design -->
-                <div id="postcard" class="w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] mx-auto bg-gradient-to-br from-red-600 via-red-700 to-red-900 text-white rounded-3xl p-6 flex flex-col justify-between shadow-2xl relative overflow-hidden border-4 border-amber-400/30">
+                <!-- Digital Postcard Design -->
+                <div id="postcard" class="w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] mx-auto bg-gradient-to-br from-red-600 via-red-700 to-red-950 text-white rounded-3xl p-6 flex flex-col justify-between shadow-2xl relative overflow-hidden border-4 border-amber-400/40">
                     <div class="flex justify-between items-start">
                         <div class="text-left">
-                            <p class="text-xs font-bold tracking-widest text-amber-300 uppercase">প্রাণবিন্দু</p>
-                            <p class="text-[9px] text-red-200">বড়াইগ্রাম রক্তদান নেটওয়ার্ক</p>
+                            <p class="text-xs font-black tracking-widest text-amber-300 uppercase">প্রাণবিন্দু</p>
+                            <p class="text-[9px] text-red-100 font-medium">বড়াইগ্রাম ডিজিটাল রক্তদান নেটওয়ার্ক</p>
                         </div>
-                        <div id="cardGroupBadge" class="bg-white text-brand-red font-black text-2xl w-12 h-12 rounded-2xl flex items-center justify-center shadow-md">
+                        <div id="cardGroupBadge" class="bg-white text-brand-red font-black text-2xl w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg border border-amber-300">
                             O+
                         </div>
                     </div>
 
                     <div class="my-auto text-center space-y-2">
-                        <img id="cardPhoto" src="https://via.placeholder.com/100" class="w-20 h-20 rounded-full mx-auto border-2 border-amber-400 object-cover shadow-md">
+                        <img id="cardPhoto" src="https://via.placeholder.com/100" class="w-20 h-20 rounded-full mx-auto border-2 border-amber-400 object-cover shadow-lg">
                         <h2 id="cardName" class="text-xl font-bold text-white tracking-wide">রক্তদাতার নাম</h2>
-                        <p id="cardLocation" class="text-xs text-red-200">বনপাড়া, বড়াইগ্রাম</p>
+                        <p id="cardPhone" class="text-xs font-bold text-amber-300">📱 017XXXXXXXX</p>
+                        <p id="cardLocation" class="text-xs text-red-100">বনপাড়া পৌরসভা, বড়াইগ্রাম</p>
                         
-                        <div class="bg-black/30 backdrop-blur-md rounded-xl p-2.5 border border-white/10 mt-2">
-                            <p class="text-xs font-semibold text-amber-300">"আমি রক্তদান করেছি, আপনি করেছেন তো?"</p>
+                        <div class="bg-black/35 backdrop-blur-md rounded-xl p-2 border border-white/10 mt-1">
+                            <p class="text-[11px] font-semibold text-amber-200">"আমি রক্তদান করি, আপনি করেন তো?"</p>
                         </div>
                     </div>
 
@@ -382,22 +392,22 @@
                 </div>
 
                 <div class="flex justify-center gap-3 pt-2">
-                    <button onclick="downloadCard()" class="btn-glow-green text-white px-6 py-2.5 rounded-xl text-xs font-bold shadow-md flex items-center gap-2">
+                    <button onclick="downloadCard()" class="btn-glow-green text-white px-6 py-3 rounded-xl text-xs font-bold shadow-md flex items-center gap-2">
                         <i class="fa-solid fa-download"></i> কার্ড ডাউনলোড করুন
                     </button>
-                    <button onclick="switchTab('home')" class="bg-gray-200 text-gray-700 px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-gray-300">
+                    <button onclick="switchTab('home')" class="bg-gray-200 text-gray-700 px-5 py-3 rounded-xl text-xs font-bold hover:bg-gray-300 transition">
                         হোমে ফিরে যান
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- ================= REQUEST BLOOD FORM (GLASSMORPHISM) ================= -->
+        <!-- ================= REQUEST BLOOD FORM ================= -->
         <div id="view-request" class="hidden max-w-2xl mx-auto glass-card p-6 sm:p-10 rounded-3xl">
             <div class="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
                 <div>
-                    <h2 class="text-2xl font-black text-brand-green">রক্তের অনুরোধ পাঠান</h2>
-                    <p class="text-xs text-gray-500">জরুরী রক্ত পেতে আপনার সঠিক তথ্য পূরণ করুন</p>
+                    <h2 class="text-2xl font-black text-brand-green">রক্তের অনুরোধ জানান</h2>
+                    <p class="text-xs text-gray-500 font-medium">জরুরী রক্তের প্রয়োজনে সঠিক তথ্য পূরণ করুন</p>
                 </div>
                 <button onclick="switchTab('home')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
@@ -406,7 +416,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">রক্তের গ্রুপ *</label>
-                        <select id="reqGroup" required class="glass-input w-full rounded-xl p-3 text-sm outline-none">
+                        <select id="reqGroup" required class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium">
                             <option value="">নির্বাচন করুন</option>
                             <option value="A+">A+</option><option value="A-">A-</option>
                             <option value="B+">B+</option><option value="B-">B-</option>
@@ -416,7 +426,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">কখন রক্ত লাগবে? *</label>
-                        <select id="reqTime" required class="glass-input w-full rounded-xl p-3 text-sm outline-none">
+                        <select id="reqTime" required class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium">
                             <option value="ইমার্জেন্সি (জরুরী)">ইমার্জেন্সি (জরুরী)</option>
                             <option value="আজকে">আজকে</option>
                             <option value="আগামীকাল">আগামীকাল</option>
@@ -427,11 +437,11 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">রোগীর নাম *</label>
-                        <input type="text" id="reqPatientName" required class="glass-input w-full rounded-xl p-3 text-sm outline-none" placeholder="রোগীর নাম">
+                        <input type="text" id="reqPatientName" required class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium" placeholder="রোগীর নাম">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">রোগীর সমস্যা *</label>
-                        <select id="reqProblem" required class="glass-input w-full rounded-xl p-3 text-sm outline-none">
+                        <select id="reqProblem" required class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium">
                             <option value="">সমস্যা নির্বাচন করুন</option>
                             <option value="সিজারিয়ান (গর্ভবতী)">সিজারিয়ান (গর্ভবতী)</option>
                             <option value="দুর্ঘটনা/অপারেশন">দুর্ঘটনা/অপারেশন</option>
@@ -444,23 +454,41 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">কয় ব্যাগ রক্ত প্রয়োজন? *</label>
-                        <input type="number" id="reqBags" min="1" value="1" required class="glass-input w-full rounded-xl p-3 text-sm outline-none">
+                        <input type="number" id="reqBags" min="1" value="1" required class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">যোগাযোগের মোবাইল নম্বর *</label>
-                        <input type="tel" id="reqPhone" pattern="[0-9]{11}" required class="glass-input w-full rounded-xl p-3 text-sm outline-none" placeholder="017XXXXXXXX">
+                        <input type="tel" id="reqPhone" pattern="[0-9]{11}" required class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium" placeholder="017XXXXXXXX">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1">হাসপাতাল/রক্তদানের স্থান *</label>
-                    <input type="text" id="reqHospital" required class="glass-input w-full rounded-xl p-3 text-sm outline-none" placeholder="হাসপাতালের নাম ও ঠিকানা">
+                    <input type="text" id="reqHospital" required class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium" placeholder="হাসপাতালের নাম ও স্থান">
                 </div>
 
                 <button type="submit" class="w-full btn-glow-green text-white py-3.5 rounded-xl font-bold transition shadow-lg mt-4">
                     অনুরোধ জমা দিন
                 </button>
             </form>
+        </div>
+
+        <!-- ================= REQUEST CONFIRMATION VIEW ================= -->
+        <div id="view-request-confirm" class="hidden max-w-lg mx-auto text-center space-y-6">
+            <div class="glass-card p-8 rounded-3xl space-y-4">
+                <div class="w-16 h-16 bg-green-100 text-brand-green rounded-full flex items-center justify-center mx-auto text-3xl shadow-inner">
+                    <i class="fa-solid fa-heart-circle-check"></i>
+                </div>
+                <h3 class="text-2xl font-black text-brand-green">আপনার অনুরোধ গ্রহণ করা হয়েছে!</h3>
+                <p class="text-sm text-gray-600 font-semibold leading-relaxed">
+                    শীঘ্রই প্রাণবিন্দু টিমের পক্ষ থেকে অথবা নিকটস্থ রক্তদাতার পক্ষ থেকে আপনার সাথে যোগাযোগ করা হবে।
+                </p>
+                <div class="pt-4">
+                    <button onclick="switchTab('home')" class="btn-glow-green text-white px-8 py-3 rounded-xl text-xs font-bold shadow-md">
+                        হোম পেজে ফিরে যান
+                    </button>
+                </div>
+            </div>
         </div>
 
         <!-- ================= UPDATE PROFILE VIEW ================= -->
@@ -471,8 +499,8 @@
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1">নিবন্ধিত মোবাইল নম্বর দিন</label>
                     <div class="flex gap-2">
-                        <input type="tel" id="updateSearchPhone" class="glass-input w-full rounded-xl p-2.5 text-sm outline-none" placeholder="017XXXXXXXX">
-                        <button onclick="searchDonorForUpdate()" class="bg-gray-900 text-white px-5 py-2.5 rounded-xl text-xs font-bold">খুঁজুন</button>
+                        <input type="tel" id="updateSearchPhone" class="glass-input w-full rounded-xl p-2.5 text-sm outline-none font-medium" placeholder="017XXXXXXXX">
+                        <button onclick="searchDonorForUpdate()" class="bg-gray-900 hover:bg-black text-white px-5 py-2.5 rounded-xl text-xs font-bold transition">খুঁজুন</button>
                     </div>
                 </div>
 
@@ -484,7 +512,7 @@
 
                     <div>
                         <label class="block text-xs font-bold text-gray-700 mb-1">নতুন শেষ রক্তদানের তারিখ</label>
-                        <input type="date" id="updateNewDate" class="glass-input w-full rounded-xl p-2.5 text-sm outline-none">
+                        <input type="date" id="updateNewDate" class="glass-input w-full rounded-xl p-2.5 text-sm outline-none font-medium">
                     </div>
 
                     <button onclick="saveDonorUpdate()" class="w-full btn-glow-red text-white py-2.5 rounded-xl font-bold text-xs">
@@ -500,17 +528,17 @@
             <!-- Admin Top Bar -->
             <div class="glass-card p-6 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 bg-red-100 text-brand-red rounded-2xl flex items-center justify-center text-2xl font-black">
+                    <div class="w-12 h-12 bg-red-100 text-brand-red rounded-2xl flex items-center justify-center text-2xl font-black shadow-sm">
                         <i class="fa-solid fa-shield-halved"></i>
                     </div>
                     <div>
                         <h2 class="text-2xl font-black text-gray-900">সুপার এডমিন কন্ট্রোল সেন্টার</h2>
-                        <p class="text-xs text-gray-500">প্রাণবিন্দু সফটওয়্যারের পূর্ণাঙ্গ কন্ট্রোল সিস্টেম</p>
+                        <p class="text-xs text-gray-500 font-medium">প্রাণবিন্দু সফটওয়্যারের পূর্ণাঙ্গ কন্ট্রোল প্যানেল</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
                     <button onclick="exportToPDF()" class="bg-red-700 hover:bg-red-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-md transition flex items-center gap-1.5">
-                        <i class="fa-solid fa-file-pdf text-sm"></i> PDF ডাউনলোড
+                        <i class="fa-solid fa-file-pdf text-sm"></i> PDF জেনারেট
                     </button>
                     <button onclick="logoutAuth()" class="bg-gray-200 text-gray-700 px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-gray-300 transition">
                         লগআউট
@@ -518,13 +546,16 @@
                 </div>
             </div>
 
-            <!-- Admin Layout Grid (Sidebar Navigation + Main Content) -->
+            <!-- Admin Layout Grid -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                 
                 <!-- Admin Sidebar Options -->
                 <div class="glass-card p-4 rounded-3xl space-y-2 h-fit">
-                    <button onclick="switchAdminSection('dashboard')" id="adminNav-dashboard" class="w-full text-left px-4 py-3 rounded-xl font-bold text-xs flex items-center gap-3 bg-brand-red text-white transition">
+                    <button onclick="switchAdminSection('dashboard')" id="adminNav-dashboard" class="w-full text-left px-4 py-3 rounded-xl font-bold text-xs flex items-center gap-3 bg-brand-red text-white transition shadow-sm">
                         <i class="fa-solid fa-chart-pie text-sm"></i> ড্যাশবোর্ড ওভারভিউ
+                    </button>
+                    <button onclick="switchAdminSection('ready')" id="adminNav-ready" class="w-full text-left px-4 py-3 rounded-xl font-bold text-xs flex items-center gap-3 text-gray-600 hover:bg-red-50 hover:text-brand-red transition">
+                        <i class="fa-solid fa-heart-pulse text-sm"></i> রক্তদানে প্রস্তুত তালিকা
                     </button>
                     <button onclick="switchAdminSection('donors')" id="adminNav-donors" class="w-full text-left px-4 py-3 rounded-xl font-bold text-xs flex items-center gap-3 text-gray-600 hover:bg-red-50 hover:text-brand-red transition">
                         <i class="fa-solid fa-users text-sm"></i> সকল রক্তদাতা
@@ -540,7 +571,7 @@
                     </button>
                 </div>
 
-                <!-- Admin Dynamic Display Area -->
+                <!-- Admin Display Area -->
                 <div class="md:col-span-3 space-y-6">
                     
                     <!-- 1. Admin Dashboard Overview -->
@@ -562,23 +593,23 @@
 
                         <div class="glass-card p-6 rounded-3xl">
                             <h4 class="font-bold text-gray-800 mb-2">কুইক সিস্টেম সামারি</h4>
-                            <p class="text-xs text-gray-500 leading-relaxed">
-                                এডমিন প্যানেল থেকে আপনি সম্পূর্ণ রক্তদাতা ডাটাবেজ নিয়ন্ত্রণ করতে পারবেন, পিডিএফ রিপোর্ট জেনারেট করতে পারবেন এবং নতুন ম্যানেজার যুক্ত করতে পারবেন।
+                            <p class="text-xs text-gray-500 leading-relaxed font-medium">
+                                এডমিন প্যানেল থেকে আপনি সম্পূর্ণ রক্তদাতা ডাটাবেজ নিয়ন্ত্রণ করতে পারবেন, সরাসরি কল/হোয়াটসঅ্যাপে যোগাযোগ করতে পারবেন, পিডিএফ রিপোর্ট জেনারেট করতে পারবেন এবং নতুন ম্যানেজার যোগ করতে পারবেন।
                             </p>
                         </div>
                     </div>
 
-                    <!-- 2. Admin Tables View (Donors / Requests / Eligible) -->
+                    <!-- 2. Admin Tables View -->
                     <div id="adminSec-tables" class="hidden space-y-4">
                         <div class="glass-card p-3 rounded-2xl flex items-center gap-2">
                             <i class="fa-solid fa-magnifying-glass text-gray-400 pl-2"></i>
-                            <input type="text" id="adminSearch" onkeyup="filterAdminData()" placeholder="নাম, রক্তের গ্রুপ বা এলাকা দিয়ে অনুসন্ধান করুন..." class="w-full text-xs outline-none bg-transparent">
+                            <input type="text" id="adminSearch" onkeyup="filterAdminData()" placeholder="নাম, রক্তের গ্রুপ বা পৌরসভা/ইউনিয়ন দিয়ে খুঁজুন..." class="w-full text-xs outline-none bg-transparent font-medium">
                         </div>
 
                         <div id="pdfPrintArea" class="glass-card rounded-3xl overflow-hidden border border-gray-100">
                             <div class="p-4 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
                                 <h3 class="font-bold text-sm text-gray-800" id="adminTableTitle">রক্তদাতা তালিকা</h3>
-                                <span class="text-[10px] text-gray-400">প্রাণবিন্দু অফিসিয়াল রিপোর্ট</span>
+                                <span class="text-[10px] text-gray-400">প্রাণবিন্দু অফিসিয়াল ডাটা রিপোর্ট</span>
                             </div>
                             <div class="overflow-x-auto">
                                 <table class="w-full text-left border-collapse text-xs">
@@ -589,31 +620,29 @@
                         </div>
                     </div>
 
-                    <!-- 3. Manager Add & List View -->
+                    <!-- 3. Manager Management View -->
                     <div id="adminSec-managers" class="hidden space-y-6">
                         <div class="glass-card p-6 rounded-3xl space-y-4">
                             <h4 class="font-bold text-sm text-gray-800">নতুন ম্যানেজার যুক্ত করুন</h4>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <input type="text" id="newManagerName" placeholder="ম্যানেজারের নাম" class="glass-input rounded-xl p-2.5 text-xs outline-none">
-                                <input type="password" id="newManagerPass" placeholder="ম্যানেজার পাসওয়ার্ড" class="glass-input rounded-xl p-2.5 text-xs outline-none">
+                                <input type="text" id="newManagerName" placeholder="ম্যানেজারের নাম" class="glass-input rounded-xl p-2.5 text-xs outline-none font-medium">
+                                <input type="password" id="newManagerPass" placeholder="ম্যানেজার পাসওয়ার্ড" class="glass-input rounded-xl p-2.5 text-xs outline-none font-medium">
                             </div>
                             <button onclick="addManager()" class="btn-glow-green text-white px-5 py-2 rounded-xl text-xs font-bold">ম্যানেজার সেভ করুন</button>
                         </div>
 
                         <div class="glass-card rounded-3xl overflow-hidden border">
                             <div class="p-4 bg-gray-50 border-b font-bold text-xs text-gray-800">নিবন্ধিত ম্যানেজার তালিকা</div>
-                            <tbody id="managerAdminListBody">
-                                <table class="w-full text-left text-xs">
-                                    <thead class="bg-gray-100 border-b">
-                                        <tr>
-                                            <th class="p-3">ম্যানেজার নাম</th>
-                                            <th class="p-3">পাসওয়ার্ড</th>
-                                            <th class="p-3">অ্যাকশন</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="managerAdminTableBody" class="divide-y"></tbody>
-                                </table>
-                            </tbody>
+                            <table class="w-full text-left text-xs">
+                                <thead class="bg-gray-100 border-b">
+                                    <tr>
+                                        <th class="p-3">ম্যানেজার নাম</th>
+                                        <th class="p-3">পাসওয়ার্ড</th>
+                                        <th class="p-3">অ্যাকশন</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="managerAdminTableBody" class="divide-y"></tbody>
+                            </table>
                         </div>
                     </div>
 
@@ -626,41 +655,63 @@
         <div id="view-manager" class="hidden space-y-6">
             <div class="glass-card p-6 rounded-3xl flex justify-between items-center">
                 <div>
-                    <h2 class="text-xl font-bold text-brand-green flex items-center gap-2">
+                    <h2 class="text-xl font-black text-brand-green flex items-center gap-2">
                         <i class="fa-solid fa-user-gear"></i> ম্যানেজার ড্যাশবোর্ড
                     </h2>
-                    <p class="text-xs text-gray-500">স্বাগতম, আপনি ম্যানেজার মোডে আছেন</p>
+                    <p class="text-xs text-gray-500 font-medium">স্বাগতম, আপনি ম্যানেজার মোডে আছেন</p>
                 </div>
                 <button onclick="logoutAuth()" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-xl text-xs font-bold hover:bg-gray-300">
                     লগআউট
                 </button>
             </div>
 
-            <!-- Manager Quick Group Filter -->
+            <!-- Manager View Switcher Tabs -->
+            <div class="flex gap-3">
+                <button onclick="switchManagerTab('ready')" id="mTabReady" class="px-5 py-2.5 rounded-2xl text-xs font-bold bg-brand-green text-white shadow-md transition">
+                    <i class="fa-solid fa-heart-pulse mr-1"></i> রক্ত দেওয়ার জন্য প্রস্তুত
+                </button>
+                <button onclick="switchManagerTab('all')" id="mTabAll" class="px-5 py-2.5 rounded-2xl text-xs font-bold bg-gray-200 text-gray-700 hover:bg-gray-300 transition">
+                    <i class="fa-solid fa-users mr-1"></i> সকল রক্তদাতা
+                </button>
+            </div>
+
+            <!-- Manager Quick Group Filter & Search -->
             <div class="glass-card p-5 rounded-3xl space-y-3">
-                <p class="text-xs font-bold text-gray-700">রক্তের গ্রুপ অনুযায়ী রক্তদাতা খুঁজুন:</p>
-                <div class="flex flex-wrap gap-2">
-                    <button onclick="managerFilterGroup('ALL')" class="px-3.5 py-1.5 bg-gray-900 text-white text-xs font-bold rounded-xl">সকল</button>
-                    <button onclick="managerFilterGroup('A+')" class="px-3.5 py-1.5 bg-red-100 text-brand-red text-xs font-bold rounded-xl hover:bg-brand-red hover:text-white">A+</button>
-                    <button onclick="managerFilterGroup('B+')" class="px-3.5 py-1.5 bg-red-100 text-brand-red text-xs font-bold rounded-xl hover:bg-brand-red hover:text-white">B+</button>
-                    <button onclick="managerFilterGroup('O+')" class="px-3.5 py-1.5 bg-red-100 text-brand-red text-xs font-bold rounded-xl hover:bg-brand-red hover:text-white">O+</button>
-                    <button onclick="managerFilterGroup('AB+')" class="px-3.5 py-1.5 bg-red-100 text-brand-red text-xs font-bold rounded-xl hover:bg-brand-red hover:text-white">AB+</button>
+                <div class="flex flex-col sm:flex-row justify-between gap-3">
+                    <div class="flex items-center gap-2 bg-white rounded-xl px-3 border flex-grow">
+                        <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
+                        <input type="text" id="managerSearchInput" onkeyup="filterManagerTable()" placeholder="রক্তদাতা, বয়স বা পৌরসভা/ইউনিয়ন দিয়ে খুঁজুন..." class="w-full text-xs py-2.5 outline-none bg-transparent font-medium">
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button onclick="managerFilterGroup('ALL')" class="px-3 py-1.5 bg-gray-900 text-white text-xs font-bold rounded-xl">সকল</button>
+                        <button onclick="managerFilterGroup('A+')" class="px-3 py-1.5 bg-red-100 text-brand-red text-xs font-bold rounded-xl hover:bg-brand-red hover:text-white">A+</button>
+                        <button onclick="managerFilterGroup('B+')" class="px-3 py-1.5 bg-red-100 text-brand-red text-xs font-bold rounded-xl hover:bg-brand-red hover:text-white">B+</button>
+                        <button onclick="managerFilterGroup('O+')" class="px-3 py-1.5 bg-red-100 text-brand-red text-xs font-bold rounded-xl hover:bg-brand-red hover:text-white">O+</button>
+                        <button onclick="managerFilterGroup('AB+')" class="px-3 py-1.5 bg-red-100 text-brand-red text-xs font-bold rounded-xl hover:bg-brand-red hover:text-white">AB+</button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Manager Donor List -->
+            <!-- Manager Donor List Table -->
             <div class="glass-card rounded-3xl overflow-hidden border">
-                <table class="w-full text-left text-xs">
-                    <thead class="bg-gray-100 border-b">
-                        <tr>
-                            <th class="p-3">রক্তদাতা</th>
-                            <th class="p-3">গ্রুপ</th>
-                            <th class="p-3">ইউনিয়ন</th>
-                            <th class="p-3">অ্যাকশন</th>
-                        </tr>
-                    </thead>
-                    <tbody id="managerTableBody" class="divide-y"></tbody>
-                </table>
+                <div class="p-4 bg-gray-50 border-b flex justify-between items-center">
+                    <h3 class="font-bold text-xs text-gray-800" id="managerTableTitle">রক্ত দেওয়ার জন্য প্রস্তুত রক্তদাতাগণ</h3>
+                    <span class="text-[10px] text-gray-500 font-semibold">(৩ মাস অতিবাহিত হয়েছে)</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-gray-100 border-b">
+                            <tr>
+                                <th class="p-3">রক্তদাতা ও বয়স</th>
+                                <th class="p-3">গ্রুপ</th>
+                                <th class="p-3">পৌরসভা/ইউনিয়ন</th>
+                                <th class="p-3">শেষ রক্তদান</th>
+                                <th class="p-3">অ্যাকশন</th>
+                            </tr>
+                        </thead>
+                        <tbody id="managerTableBody" class="divide-y"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -676,16 +727,15 @@
             <div class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1">পাসওয়ার্ড দিন</label>
-                    <input type="password" id="authPass" class="glass-input w-full rounded-xl p-3 text-sm outline-none" placeholder="••••••••">
+                    <input type="password" id="authPass" class="glass-input w-full rounded-xl p-3 text-sm outline-none font-medium" placeholder="••••••••">
                 </div>
 
                 <button onclick="submitAuth()" class="w-full btn-glow-red text-white py-3 rounded-xl font-bold text-xs shadow-md">
                     প্রবেশ করুন
                 </button>
 
-                <!-- Hidden Number Call Option for Manager Registration -->
                 <div id="managerCallNotice" class="hidden text-center pt-2 border-t border-gray-100">
-                    <p class="text-[11px] text-gray-500 mb-2">আপনি যদি ম্যানেজার হিসেবে নিবন্ধিত না হন, এডমিনকে কল করুন:</p>
+                    <p class="text-[11px] text-gray-500 mb-2">আপনি ম্যানেজার না হলে নিবন্ধনের জন্য কল করুন:</p>
                     <a href="tel:01887488674" class="inline-flex items-center gap-2 bg-green-100 text-brand-green px-4 py-2 rounded-xl text-xs font-bold hover:bg-brand-green hover:text-white transition">
                         <i class="fa-solid fa-phone"></i> এডমিনকে কল করুন
                     </a>
@@ -703,10 +753,10 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-100 py-6 text-center text-xs text-gray-500">
+    <footer class="bg-white border-t border-gray-200 py-6 text-center text-xs text-gray-500 mt-12">
         <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-3">
-            <p>© ২০২৬ প্রাণবিন্দু। সর্বস্বত্ব সংরক্ষিত।</p>
-            <p>ডেভেলপমেন্ট ব্র্যান্ডিং: 
+            <p>© ২০২৬ প্রাণবিন্দু। বড়াইগ্রাম উপজেলা রক্তদান নেটওয়ার্ক।</p>
+            <p>ডিজিটাল পার্টনার: 
                 <a href="https://wa.me/8801763753653" target="_blank" class="font-bold text-brand-red hover:underline">
                     Nexis Cyber & Software
                 </a>
@@ -714,7 +764,7 @@
         </div>
     </footer>
 
-    <!-- JS Application Script -->
+    <!-- JS Application Logic Script -->
     <script>
         // Firebase Configuration
         const firebaseConfig = {
@@ -730,13 +780,23 @@
         if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // Application State Variables
+        // Application State
         let currentAuthMode = '';
         let localPhotoBase64 = '';
         let allDonorsCache = [];
         let allRequestsCache = [];
         let allManagersCache = JSON.parse(localStorage.getItem('managersList') || '[{"id":"1","name":"ম্যানেজার ১","pass":"m123"}]');
         let tempUnavailable = JSON.parse(localStorage.getItem('tempUnavailable') || '{}');
+        let currentManagerTab = 'ready';
+
+        // Helper: Calculate Age from DOB
+        function calculateAge(dobString) {
+            if (!dobString) return 'N/A';
+            const dob = new Date(dobString);
+            const diffMs = Date.now() - dob.getTime();
+            const ageDate = new Date(diffMs);
+            return Math.abs(ageDate.getUTCFullYear() - 1970);
+        }
 
         // Navigation
         function switchTab(viewId) {
@@ -750,17 +810,45 @@
             document.getElementById('dropdownMenu').classList.toggle('hidden');
         }
 
-        // Photo Upload Handling (Optional Drag & Drop)
+        // Auto Compress Image under 10KB
         function handlePhotoSelect(e) {
             const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(evt) {
-                    localPhotoBase64 = evt.target.result;
-                    document.getElementById('uploadText').innerText = file.name;
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+                    
+                    // Scale down image max dimension to 150px
+                    const maxDim = 150;
+                    if (width > height) {
+                        if (width > maxDim) {
+                            height *= maxDim / width;
+                            width = maxDim;
+                        }
+                    } else {
+                        if (height > maxDim) {
+                            width *= maxDim / height;
+                            height = maxDim;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    // Compress to low quality to ensure size <= 10KB
+                    localPhotoBase64 = canvas.toDataURL('image/jpeg', 0.4);
+                    document.getElementById('uploadText').innerText = file.name + ' (১০ KB এর নিচে কমপ্রেসড)';
                 };
-                reader.readAsDataURL(file);
-            }
+                img.src = evt.target.result;
+            };
+            reader.readAsDataURL(file);
         }
 
         function copyAddress() {
@@ -769,23 +857,32 @@
             }
         }
 
-        // Donor Form Registration
+        // Donor Registration Handler
         async function handleDonorSubmit(e) {
             e.preventDefault();
-            const donorData = {
-                name: document.getElementById('regName').value,
-                group: document.getElementById('regGroup').value,
-                phone: document.getElementById('regPhone').value,
-                union: document.getElementById('regUnion').value,
-                permAddress: document.getElementById('regPermanentAddress').value,
-                presAddress: document.getElementById('regPresentAddress').value,
-                dob: document.getElementById('regDob').value,
-                lastDonate: document.getElementById('regLastDonate').value || '',
-                photo: localPhotoBase64 || 'https://via.placeholder.com/150',
-                createdAt: new Date().toISOString()
-            };
+            const phone = document.getElementById('regPhone').value.trim();
 
             try {
+                // Prevent duplicate registration with same phone
+                const existingQuery = await db.collection('donors').where('phone', '==', phone).get();
+                if (!existingQuery.empty) {
+                    alert('⚠️ এই মোবাইল নম্বর দিয়ে ইতিমধ্যে একজন রক্তদাতা নিবন্ধিত রয়েছেন! একটি নম্বর দিয়ে একাধিক রেজিস্ট্রেশন সম্ভব নয়।');
+                    return;
+                }
+
+                const donorData = {
+                    name: document.getElementById('regName').value,
+                    group: document.getElementById('regGroup').value,
+                    phone: phone,
+                    union: document.getElementById('regUnion').value,
+                    permAddress: document.getElementById('regPermanentAddress').value,
+                    presAddress: document.getElementById('regPresentAddress').value,
+                    dob: document.getElementById('regDob').value,
+                    lastDonate: document.getElementById('regLastDonate').value || '',
+                    photo: localPhotoBase64 || 'https://via.placeholder.com/150',
+                    createdAt: new Date().toISOString()
+                };
+
                 const docRef = await db.collection('donors').add(donorData);
                 renderPostcard(donorData, docRef.id);
                 switchTab('card');
@@ -796,6 +893,7 @@
 
         function renderPostcard(data, id) {
             document.getElementById('cardName').innerText = data.name;
+            document.getElementById('cardPhone').innerText = `📱 ${data.phone}`;
             document.getElementById('cardGroupBadge').innerText = data.group;
             document.getElementById('cardLocation').innerText = `${data.union}, বড়াইগ্রাম`;
             document.getElementById('cardPhoto').src = data.photo;
@@ -812,7 +910,7 @@
             });
         }
 
-        // Blood Request Submit
+        // Request Blood Handler
         async function handleRequestSubmit(e) {
             e.preventDefault();
             const reqData = {
@@ -829,8 +927,7 @@
 
             try {
                 await db.collection('requests').add(reqData);
-                alert('রক্তের অনুরোধ সফলভাবে পাঠানো হয়েছে!');
-                switchTab('home');
+                switchTab('request-confirm');
             } catch (err) {
                 alert('ত্রুটি হয়েছে: ' + err.message);
             }
@@ -841,7 +938,7 @@
             const phone = document.getElementById('updateSearchPhone').value;
             const snapshot = await db.collection('donors').where('phone', '==', phone).get();
             if (snapshot.empty) {
-                alert('কোনো তথ্য পাওয়া যায়নি!');
+                alert('কোনো রক্তদাতার তথ্য পাওয়া যায়নি!');
                 return;
             }
             snapshot.forEach(doc => {
@@ -857,11 +954,11 @@
             const docId = document.getElementById('updateFormContainer').dataset.id;
             const newDate = document.getElementById('updateNewDate').value;
             await db.collection('donors').doc(docId).update({ lastDonate: newDate });
-            alert('সফলভাবে তথ্য হালনাগাদ হয়েছে!');
+            alert('সফলভাবে রক্তদানের তারিখ হালনাগাদ হয়েছে!');
             switchTab('home');
         }
 
-        // Auth System
+        // Auth Logic
         function openAuthModal(mode) {
             currentAuthMode = mode;
             toggleMenu();
@@ -905,7 +1002,14 @@
             switchTab('home');
         }
 
-        // Admin Panel Functions
+        // Helper: Check if donor is ready (>= 90 days or no record)
+        function checkIsReady(lastDonateDate) {
+            if (!lastDonateDate) return true;
+            const diffDays = (new Date() - new Date(lastDonateDate)) / (1000 * 60 * 60 * 24);
+            return diffDays >= 90;
+        }
+
+        // Admin Panel Data Loader
         async function loadAdminDashboard() {
             const donorsSnap = await db.collection('donors').get();
             const reqSnap = await db.collection('requests').get();
@@ -926,20 +1030,20 @@
 
             if (section === 'dashboard') {
                 document.getElementById('adminSec-dashboard').classList.remove('hidden');
+            } else if (section === 'ready') {
+                document.getElementById('adminSec-tables').classList.remove('hidden');
+                const readyList = allDonorsCache.filter(d => checkIsReady(d.lastDonate));
+                renderAdminDonorsTable(readyList, 'রক্ত দেওয়ার জন্য প্রস্তুত রক্তদাতা তালিকা');
             } else if (section === 'donors') {
                 document.getElementById('adminSec-tables').classList.remove('hidden');
-                renderAdminDonorsTable(allDonorsCache);
+                renderAdminDonorsTable(allDonorsCache, 'সকল রক্তদাতা তালিকা');
             } else if (section === 'requests') {
                 document.getElementById('adminSec-tables').classList.remove('hidden');
                 renderAdminRequestsTable(allRequestsCache);
             } else if (section === 'eligible') {
                 document.getElementById('adminSec-tables').classList.remove('hidden');
-                const filterList = allDonorsCache.filter(d => {
-                    if (!d.lastDonate) return false;
-                    const diffDays = (new Date() - new Date(d.lastDonate)) / (1000 * 60 * 60 * 24);
-                    return diffDays < 90;
-                });
-                renderAdminDonorsTable(filterList, 'অনুপযুক্ত রক্তদাতা তালিকা (৩ মাসের কম)');
+                const unreadyList = allDonorsCache.filter(d => !checkIsReady(d.lastDonate));
+                renderAdminDonorsTable(unreadyList, 'অনুপযুক্ত রক্তদাতা (৩ মাসের কম)');
             } else if (section === 'managers') {
                 document.getElementById('adminSec-managers').classList.remove('hidden');
                 renderManagerAdminList();
@@ -950,24 +1054,25 @@
             document.getElementById('adminTableTitle').innerText = customTitle;
             document.getElementById('adminTableHead').innerHTML = `
                 <tr>
-                    <th class="p-3">নাম</th>
+                    <th class="p-3">নাম ও বয়স</th>
                     <th class="p-3">গ্রুপ</th>
                     <th class="p-3">মোবাইল</th>
-                    <th class="p-3">ইউনিয়ন</th>
+                    <th class="p-3">পৌরসভা/ইউনিয়ন</th>
                     <th class="p-3">অ্যাকশন</th>
                 </tr>
             `;
             let html = '';
             data.forEach(item => {
+                const age = calculateAge(item.dob);
                 html += `
                     <tr>
-                        <td class="p-3 font-bold text-gray-800">${item.name}</td>
+                        <td class="p-3 font-bold text-gray-800">${item.name} <span class="text-[10px] text-gray-500 font-medium">(${age} বছর)</span></td>
                         <td class="p-3"><span class="bg-red-100 text-brand-red font-bold px-2 py-0.5 rounded text-[11px]">${item.group}</span></td>
                         <td class="p-3">${item.phone}</td>
                         <td class="p-3">${item.union}</td>
-                        <td class="p-3">
+                        <td class="p-3 whitespace-nowrap">
                             <button onclick="viewDetail('${item.id}')" class="text-blue-600 font-bold mr-2"><i class="fa-solid fa-eye"></i> ডিটেইলস</button>
-                            <button onclick="deleteDonor('${item.id}')" class="text-red-600 font-bold"><i class="fa-solid fa-trash"></i></button>
+                            <button onclick="deleteDonor('${item.id}')" class="text-red-600 font-bold"><i class="fa-solid fa-trash"></i> ডিলিট</button>
                         </td>
                     </tr>
                 `;
@@ -981,16 +1086,16 @@
                 <tr>
                     <th class="p-3">রোগীর নাম</th>
                     <th class="p-3">গ্রুপ</th>
-                    <th class="p-3">ব্যাগ</th>
+                    <th class="p-3">পরিমাণ</th>
                     <th class="p-3">মোবাইল</th>
-                    <th class="p-3">হাসপাতাল</th>
+                    <th class="p-3">স্থান</th>
                 </tr>
             `;
             let html = '';
             data.forEach(item => {
                 html += `
                     <tr>
-                        <td class="p-3 font-bold">${item.patientName}</td>
+                        <td class="p-3 font-bold text-gray-800">${item.patientName}</td>
                         <td class="p-3"><span class="bg-red-100 text-brand-red font-bold px-2 py-0.5 rounded text-[11px]">${item.group}</span></td>
                         <td class="p-3 font-bold">${item.bags} ব্যাগ</td>
                         <td class="p-3">${item.phone}</td>
@@ -1004,15 +1109,16 @@
         async function viewDetail(id) {
             const doc = await db.collection('donors').doc(id).get();
             const d = doc.data();
+            const age = calculateAge(d.dob);
             document.getElementById('detailContent').innerHTML = `
                 <img src="${d.photo}" class="w-20 h-20 rounded-full mx-auto border shadow-sm object-cover">
                 <h3 class="text-center text-lg font-bold text-gray-800">${d.name} (${d.group})</h3>
-                <div class="text-xs space-y-1.5 text-gray-600 pt-2 border-t">
+                <p class="text-center text-xs text-gray-500 font-semibold">বয়স: ${age} বছর</p>
+                <div class="text-xs space-y-2 text-gray-600 pt-3 border-t mt-2">
                     <p><strong>মোবাইল:</strong> ${d.phone}</p>
-                    <p><strong>ইউনিয়ন:</strong> ${d.union}</p>
+                    <p><strong>পৌরসভা/ইউনিয়ন:</strong> ${d.union}</p>
                     <p><strong>স্থায়ী ঠিকানা:</strong> ${d.permAddress}</p>
                     <p><strong>বর্তমান ঠিকানা:</strong> ${d.presAddress}</p>
-                    <p><strong>জন্ম তারিখ:</strong> ${d.dob}</p>
                     <p><strong>শেষ রক্তদান:</strong> ${d.lastDonate || 'তথ্য নেই'}</p>
                 </div>
             `;
@@ -1026,11 +1132,10 @@
             }
         }
 
-        // Manager Add/Remove Logic
         function addManager() {
             const name = document.getElementById('newManagerName').value;
             const pass = document.getElementById('newManagerPass').value;
-            if (!name || !pass) return alert('ম্যানেজার নাম ও পাসওয়ার্ড দিন!');
+            if (!name || !pass) return alert('ম্যানেজারের নাম ও পাসওয়ার্ড দিন!');
             
             allManagersCache.push({ id: Date.now().toString(), name, pass });
             localStorage.setItem('managersList', JSON.stringify(allManagersCache));
@@ -1062,25 +1167,43 @@
             renderManagerAdminList();
         }
 
-        // PDF Export Function
         function exportToPDF() {
             const element = document.getElementById('pdfPrintArea');
             html2canvas(element, { scale: 2 }).then(canvas => {
                 const imgData = canvas.toDataURL('image/png');
                 const pdf = new jspdf.jsPDF('p', 'mm', 'a4');
                 const imgWidth = 210;
-                const pageHeight = 295;
                 const imgHeight = (canvas.height * imgWidth) / canvas.width;
                 pdf.addImage(imgData, 'PNG', 0, 10, imgWidth, imgHeight);
                 pdf.save('Pranbindu_Report.pdf');
             });
         }
 
-        // Manager Panel Data & 2 Hour Red Mark
+        // Manager Panel Handler
         async function loadManagerData() {
             const snapshot = await db.collection('donors').get();
             allDonorsCache = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            renderManagerTable(allDonorsCache);
+            switchManagerTab('ready');
+        }
+
+        function switchManagerTab(tab) {
+            currentManagerTab = tab;
+            const btnReady = document.getElementById('mTabReady');
+            const btnAll = document.getElementById('mTabAll');
+            const title = document.getElementById('managerTableTitle');
+
+            if (tab === 'ready') {
+                btnReady.className = "px-5 py-2.5 rounded-2xl text-xs font-bold bg-brand-green text-white shadow-md transition";
+                btnAll.className = "px-5 py-2.5 rounded-2xl text-xs font-bold bg-gray-200 text-gray-700 hover:bg-gray-300 transition";
+                title.innerText = "রক্ত দেওয়ার জন্য প্রস্তুত রক্তদাতাগণ (৩ মাস অতিবাহিত)";
+                const readyList = allDonorsCache.filter(d => checkIsReady(d.lastDonate));
+                renderManagerTable(readyList);
+            } else {
+                btnAll.className = "px-5 py-2.5 rounded-2xl text-xs font-bold bg-brand-red text-white shadow-md transition";
+                btnReady.className = "px-5 py-2.5 rounded-2xl text-xs font-bold bg-gray-200 text-gray-700 hover:bg-gray-300 transition";
+                title.innerText = "সকল নিবন্ধিত রক্তদাতা তালিকা";
+                renderManagerTable(allDonorsCache);
+            }
         }
 
         function renderManagerTable(data) {
@@ -1089,15 +1212,18 @@
 
             data.forEach(item => {
                 const isTempRed = tempUnavailable[item.id] && (now - tempUnavailable[item.id] < 2 * 60 * 60 * 1000);
+                const age = calculateAge(item.dob);
                 
                 html += `
                     <tr class="${isTempRed ? 'unavailable-row' : ''}">
-                        <td class="p-3 font-bold">${item.name}</td>
+                        <td class="p-3 font-bold text-gray-800">${item.name} <span class="text-[10px] text-gray-500 font-medium">(${age} বছর)</span></td>
                         <td class="p-3"><span class="bg-red-100 text-brand-red font-bold px-2 py-0.5 rounded text-[11px]">${item.group}</span></td>
                         <td class="p-3">${item.union}</td>
-                        <td class="p-3 space-x-1">
-                            <a href="tel:${item.phone}" class="bg-green-600 text-white px-2 py-1 rounded text-[10px] font-bold">কল</a>
-                            <button onclick="markUnavailable('${item.id}')" class="bg-red-500 text-white px-2 py-1 rounded text-[10px]">অপারগ (২ঘণ্টা)</button>
+                        <td class="p-3">${item.lastDonate || 'তথ্য নেই'}</td>
+                        <td class="p-3 space-x-1 whitespace-nowrap">
+                            <a href="tel:${item.phone}" class="bg-green-600 text-white px-2.5 py-1 rounded text-[10px] font-bold inline-block"><i class="fa-solid fa-phone"></i> কল</a>
+                            <a href="https://wa.me/88${item.phone}" target="_blank" class="bg-emerald-500 text-white px-2.5 py-1 rounded text-[10px] font-bold inline-block"><i class="fa-brands fa-whatsapp"></i> চ্যাট</a>
+                            <button onclick="markUnavailable('${item.id}')" class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-[10px]">অপারগ (২ঘণ্টা)</button>
                         </td>
                     </tr>
                 `;
@@ -1108,15 +1234,29 @@
         function markUnavailable(id) {
             tempUnavailable[id] = Date.now();
             localStorage.setItem('tempUnavailable', JSON.stringify(tempUnavailable));
-            renderManagerTable(allDonorsCache);
+            switchManagerTab(currentManagerTab);
         }
 
         function managerFilterGroup(grp) {
-            if (grp === 'ALL') renderManagerTable(allDonorsCache);
-            else renderManagerTable(allDonorsCache.filter(d => d.group === grp));
+            let baseList = currentManagerTab === 'ready' ? allDonorsCache.filter(d => checkIsReady(d.lastDonate)) : allDonorsCache;
+            if (grp !== 'ALL') baseList = baseList.filter(d => d.group === grp);
+            renderManagerTable(baseList);
         }
 
-        // Home Page Stats
+        function filterManagerTable() {
+            const query = document.getElementById('managerSearchInput').value.toLowerCase();
+            let baseList = currentManagerTab === 'ready' ? allDonorsCache.filter(d => checkIsReady(d.lastDonate)) : allDonorsCache;
+            
+            const filtered = baseList.filter(d => 
+                d.name.toLowerCase().includes(query) || 
+                d.union.toLowerCase().includes(query) || 
+                d.group.toLowerCase().includes(query) ||
+                d.phone.includes(query)
+            );
+            renderManagerTable(filtered);
+        }
+
+        // Stats Counter
         async function loadStats() {
             const donorsSnap = await db.collection('donors').get();
             const reqSnap = await db.collection('requests').get();
