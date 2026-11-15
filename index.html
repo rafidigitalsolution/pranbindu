@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>প্রাণবিন্দু - বড়াইগ্রাম স্মার্ট রক্তদান ব্যবস্থাপনা সিস্টেম</title>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -36,6 +36,38 @@ body{font-family:'Hind Siliguri',sans-serif;background:#F8FAFC;color:#1E293B}
 .bar{height:8px;border-radius:99px;background:#F1F5F9;overflow:hidden}
 .bar>i{display:block;height:100%;background:linear-gradient(90deg,#E53935,#B71C1C);border-radius:99px}
 #detailModal>div{max-height:92vh;overflow-y:auto;padding:0}
+.btn-glow-gold{background:linear-gradient(135deg,#D97706,#B45309);transition:all .3s;box-shadow:0 8px 20px -4px rgba(217,119,6,.45)}
+.btn-glow-gold:hover{transform:translateY(-2px)}
+.pdf-page{width:794px;height:1123px;background:#fff;position:relative;overflow:hidden;font-family:'Hind Siliguri',sans-serif;color:#1E293B}
+.pdf-page *{box-sizing:border-box;margin:0}
+.pdf-top{height:10px;background:linear-gradient(90deg,#B71C1C,#E53935 55%,#2E7D32)}
+.pdf-head{display:flex;align-items:center;gap:16px;padding:16px 36px 14px}
+.pdf-head .logo{height:66px;width:auto;object-fit:contain}
+.pdf-head h1{font-size:42px;font-weight:700;color:#C62828;line-height:1.05}
+.pdf-head .tag{font-size:12.5px;font-weight:700;color:#2E7D32;margin-top:6px}
+.pdf-contact{margin-left:auto;text-align:right;font-size:11px;line-height:1.55;color:#475569;font-weight:600}
+.pdf-contact b{display:block;font-size:15px;color:#C62828;font-weight:700}
+.pdf-rule{margin:0 36px;height:3px;background:#C62828;position:relative}
+.pdf-rule:after{content:"";position:absolute;left:0;right:0;top:6px;height:1px;background:#2E7D32}
+.pdf-wm{position:absolute;left:207px;top:360px;width:380px;opacity:.045}
+.pdf-body{position:absolute;left:36px;right:36px;top:136px;bottom:56px;overflow:hidden}
+.pdf-foot{position:absolute;left:36px;right:36px;bottom:16px;display:flex;justify-content:space-between;font-size:10px;font-weight:600;color:#64748B;border-top:1px solid #CBD5E1;padding-top:6px}
+.pdf-meta{display:flex;justify-content:space-between;gap:10px;background:#FFF5F5;border:1px solid #FECACA;border-radius:10px;padding:9px 14px;font-size:12px;margin-bottom:10px}
+.pdf-meta b{color:#B71C1C}
+.pdf-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.pdf-chips span{background:#fff;border:1.5px solid #E53935;color:#B71C1C;font-weight:700;font-size:11.5px;padding:2px 10px;border-radius:99px}
+.pdf-blk{margin-bottom:20px}
+.pdf-grp{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.pdf-gname{min-width:84px;height:52px;padding:0 16px;border-radius:14px;background:linear-gradient(135deg,#E53935,#B71C1C);color:#fff;font-size:32px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.pdf-gt{font-size:15px;font-weight:700;color:#1E293B}
+.pdf-gs{font-size:11.5px;font-weight:600;color:#64748B}
+.pdf-tbl{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px}
+.pdf-tbl th{background:#B71C1C;color:#fff;font-weight:700;text-align:left;padding:7px 8px;font-size:11.5px}
+.pdf-tbl td{padding:7px 8px;border-bottom:1px solid #F1F5F9;word-wrap:break-word;vertical-align:middle}
+.pdf-tbl tr.alt td{background:#FFF7F7}
+.pdf-tbl .c{text-align:center}
+.pdf-tbl .g{font-weight:700;color:#B71C1C}
+.pdf-tbl .nm{font-weight:700}
 </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-red-100 selection:text-red-600">
@@ -74,7 +106,10 @@ body{font-family:'Hind Siliguri',sans-serif;background:#F8FAFC;color:#1E293B}
 <span class="bg-red-50 text-brand-red border border-red-200 px-4 py-1.5 rounded-full text-xs font-bold inline-block mb-4"><i class="fa-solid fa-heart-pulse mr-1 animate-pulse"></i> বড়াইগ্রামের প্রথম স্মার্ট ব্লাড ডোনার নেটওয়ার্ক</span>
 <h2 class="text-3xl sm:text-5xl font-black text-gray-900 mb-3 leading-tight">এক ফোটা রক্ত, একটি নতুন জীবন</h2>
 <p class="text-gray-600 max-w-xl mx-auto text-sm sm:text-base mb-8 font-medium">বড়াইগ্রাম উপজেলার যেকোনো ইমার্জেন্সি রক্তের প্রয়োজনে বা স্বেচ্ছায় রক্তদানে যুক্ত হোন আমাদের ডিজিটাল প্ল্যাটফর্মে।</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
 <a href="tel:01887488674" class="pulse-call btn-glow-red inline-flex items-center gap-3 text-white px-8 py-4 rounded-full text-base sm:text-lg font-bold"><i class="fa-solid fa-phone-volume text-xl"></i><span>জরুরী প্রয়োজনে সরাসরি কল করুন</span></a>
+<button onclick="openDonate()" class="btn-glow-gold inline-flex items-center gap-3 text-white px-8 py-4 rounded-full text-base sm:text-lg font-bold"><i class="fa-solid fa-hand-holding-heart text-xl"></i><span>ডোনেট করুন</span></button>
+</div>
 </div>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
@@ -256,6 +291,7 @@ body{font-family:'Hind Siliguri',sans-serif;background:#F8FAFC;color:#1E293B}
 <button onclick="switchAdminSection('requests')" id="adminNav-requests" class="w-full text-left px-4 py-3 rounded-xl font-bold text-xs flex items-center gap-3 text-gray-600 hover:bg-red-50 hover:text-brand-red"><i class="fa-solid fa-notes-medical"></i> রক্তের অনুরোধসমূহ ও স্ট্যাটাস</button>
 <button onclick="switchAdminSection('eligible')" id="adminNav-eligible" class="w-full text-left px-4 py-3 rounded-xl font-bold text-xs flex items-center gap-3 text-gray-600 hover:bg-red-50 hover:text-brand-red"><i class="fa-solid fa-clock-rotate-left"></i> ৩ মাসের কম (অনুপযুক্ত)</button>
 <button id="managerMenuBtn" onclick="switchAdminSection('managers')" class="w-full text-left px-4 py-3 rounded-xl font-bold text-xs flex items-center gap-3 text-gray-600 hover:bg-red-50 hover:text-brand-red"><i class="fa-solid fa-user-gear"></i> ম্যানেজার তালিকা ও অ্যাড</button>
+<button id="adminNav-donations" onclick="switchAdminSection('donations')" class="w-full text-left px-4 py-3 rounded-xl font-bold text-xs flex items-center gap-3 text-gray-600 hover:bg-red-50 hover:text-brand-red"><i class="fa-solid fa-hand-holding-dollar"></i> ডোনেশন ও হিসাব</button>
 </div>
 
 <div class="md:col-span-3 space-y-6">
@@ -279,6 +315,31 @@ body{font-family:'Hind Siliguri',sans-serif;background:#F8FAFC;color:#1E293B}
 </div>
 </div>
 
+<div id="adminSec-donations" class="hidden space-y-6">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="glass-card p-5 rounded-2xl border-l-4 border-amber-500"><p class="text-xs font-bold text-gray-500">মোট নিশ্চিত ডোনেশন</p><h3 class="text-3xl font-black mt-1 text-amber-700" id="donSumConfirmed">৳০</h3></div>
+<div class="glass-card p-5 rounded-2xl border-l-4 border-brand-red"><p class="text-xs font-bold text-gray-500">যাচাই বাকি</p><h3 class="text-3xl font-black mt-1" id="donSumPending">0</h3></div>
+<div class="glass-card p-5 rounded-2xl border-l-4 border-brand-green"><p class="text-xs font-bold text-gray-500">মোট এন্ট্রি</p><h3 class="text-3xl font-black mt-1" id="donSumCount">0</h3></div>
+</div>
+<div class="glass-card p-6 rounded-3xl space-y-4">
+<h4 class="font-bold text-sm text-gray-800"><i class="fa-solid fa-circle-plus text-brand-green mr-1"></i> নতুন ডোনেশন এন্ট্রি</h4>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+<div><label class="font-bold text-gray-700">দাতার নাম</label><input type="text" id="aDonName" class="glass-input w-full p-2.5 rounded-xl mt-1" placeholder="দাতার নাম"></div>
+<div><label class="font-bold text-gray-700">মোবাইল নম্বর</label><input type="tel" id="aDonPhone" class="glass-input w-full p-2.5 rounded-xl mt-1" placeholder="017XXXXXXXX"></div>
+<div><label class="font-bold text-gray-700">পরিমাণ (৳) *</label><input type="number" min="1" id="aDonAmount" class="glass-input w-full p-2.5 rounded-xl mt-1" placeholder="যেমন: 500"></div>
+<div><label class="font-bold text-gray-700">মাধ্যম</label><select id="aDonMethod" class="glass-input w-full p-2.5 rounded-xl mt-1"><option>বিকাশ</option><option>নগদ</option><option>ক্যাশ (হাতে হাতে)</option><option>অন্যান্য</option></select></div>
+<div><label class="font-bold text-gray-700">ট্রানজ্যাকশন আইডি</label><input type="text" id="aDonTrx" class="glass-input w-full p-2.5 rounded-xl mt-1" placeholder="TrxID (থাকলে)"></div>
+<div><label class="font-bold text-gray-700">তারিখ</label><input type="date" id="aDonDate" class="glass-input w-full p-2.5 rounded-xl mt-1"></div>
+<div class="sm:col-span-2"><label class="font-bold text-gray-700">নোট / উদ্দেশ্য</label><input type="text" id="aDonNote" class="glass-input w-full p-2.5 rounded-xl mt-1" placeholder="যেমন: রক্তদান ক্যাম্পের জন্য"></div>
+</div>
+<label class="flex items-center gap-2 text-xs font-bold text-gray-700"><input type="checkbox" id="aDonAnon" onchange="aDonAnonChange()"> দাতার পরিচয় গোপন (নাম ও মোবাইল সংরক্ষণ হবে না)</label>
+<button onclick="saveAdminDonation()" class="btn-glow-green text-white px-6 py-2.5 rounded-xl text-xs font-bold">ডোনেশন সেভ করুন</button>
+</div>
+<div class="glass-card rounded-3xl overflow-hidden border">
+<div class="p-4 bg-gray-50 border-b flex flex-wrap justify-between items-center gap-2"><span class="font-bold text-xs text-gray-800">ডোনেশন তালিকা</span><div id="donChips" class="flex gap-2"></div></div>
+<div class="overflow-x-auto"><table class="w-full text-left text-xs"><thead class="bg-gray-100 border-b"><tr><th class="p-3">তারিখ</th><th class="p-3">দাতা</th><th class="p-3">পরিমাণ</th><th class="p-3">মাধ্যম / TrxID</th><th class="p-3">স্ট্যাটাস</th><th class="p-3">অ্যাকশন</th></tr></thead><tbody id="donTableBody" class="divide-y"></tbody></table></div>
+</div>
+</div>
 <div id="adminSec-managers" class="hidden space-y-6">
 <div class="glass-card p-6 rounded-3xl space-y-4">
 <h4 class="font-bold text-sm text-gray-800">নতুন ম্যানেজার যুক্ত করুন</h4>
@@ -319,6 +380,14 @@ body{font-family:'Hind Siliguri',sans-serif;background:#F8FAFC;color:#1E293B}
 <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl relative">
 <button onclick="closeDetail()" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/30 text-white grid place-items-center"><i class="fa-solid fa-xmark"></i></button>
 <div id="detailContent"></div>
+</div>
+</div>
+
+<!-- Donate Modal -->
+<div id="donateModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+<div class="bg-white w-full max-w-md rounded-3xl shadow-2xl relative max-h-[92vh] overflow-y-auto">
+<button onclick="closeDonate()" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/30 text-white grid place-items-center"><i class="fa-solid fa-xmark"></i></button>
+<div id="donateContent"></div>
 </div>
 </div>
 
@@ -368,7 +437,18 @@ const intl=p=>{p=String(p||'').replace(/\D/g,'');return p.startsWith('0')?'88'+p
 const GROUPS=['A+','A-','B+','B-','AB+','AB-','O+','O-'];
 const COMPAT={'A+':['A+','A-','O+','O-'],'A-':['A-','O-'],'B+':['B+','B-','O+','O-'],'B-':['B-','O-'],'AB+':GROUPS,'AB-':['A-','B-','AB-','O-'],'O+':['O+','O-'],'O-':['O-']};
 const STATUSES=['পেন্ডিং','রক্তদাতা অনুসন্ধান করা হচ্ছে','সম্পন্ন'];
-const NAV={dashboard:'adminNav-dashboard',ready:'adminNav-ready',donors:'adminNav-donors',requests:'adminNav-requests',eligible:'adminNav-eligible',managers:'managerMenuBtn'};
+const NAV={dashboard:'adminNav-dashboard',ready:'adminNav-ready',donors:'adminNav-donors',requests:'adminNav-requests',eligible:'adminNav-eligible',managers:'managerMenuBtn',donations:'adminNav-donations'};
+// ডোনেশনের নম্বর ও খরচের বিবরণ এখান থেকে বদলাতে পারবেন
+const PAY_NUMBER='01763752653';
+const DONATION_USES=[
+{i:'fa-droplet',c:'bg-red-100 text-red-600',t:'জরুরী রোগীর জন্য রক্তদাতা খুঁজে বের করা, যোগাযোগ ও যাতায়াত খরচ'},
+{i:'fa-bullhorn',c:'bg-amber-100 text-amber-700',t:'রক্তদান ক্যাম্প ও সচেতনতামূলক কার্যক্রম পরিচালনা'},
+{i:'fa-heart-pulse',c:'bg-green-100 text-green-700',t:'থ্যালাসেমিয়াসহ অসহায় রোগীদের রক্ত ও চিকিৎসা সংক্রান্ত সহায়তা'},
+{i:'fa-server',c:'bg-blue-100 text-blue-700',t:'ওয়েবসাইট, সার্ভার ও ডাটাবেজ রক্ষণাবেক্ষণ'}
+];
+const LOGO_URL='https://i.ibb.co.com/MDGxCpjj/b26b0101-8451-41e0-b8f0-942cef3e085f.png';
+const DROP='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 33"><path d="M12 0C12 0 0 14 0 21a12 12 0 0 0 24 0C24 14 12 0 12 0z" fill="#E53935"/></svg>');
+let allDonationsCache=[],donFilter='all',donMethod='বিকাশ',donAnon=false,pdfBusy=false;
 
 let currentAuthMode='',loggedInRole='',allDonorsCache=[],allRequestsCache=[],allManagersCache=[],currentDisplayedDonors=[];
 let baseList=[],baseKind='donors',baseTitle='',activeGroup='all',curSection='dashboard',editPhotoData='';
@@ -500,6 +580,7 @@ loggedInRole='manager';
 closeAuthModal();switchTab('admin');
 document.getElementById('panelHeaderTitle').innerText=isAdmin()?'সুপার এডমিন কন্ট্রোল সেন্টার':'ম্যানেজার কন্ট্রোল প্যানেল';
 document.getElementById('managerMenuBtn').style.display=isAdmin()?'flex':'none';
+document.getElementById('adminNav-donations').style.display=isAdmin()?'flex':'none';
 curSection='dashboard';
 loadAdminDashboard();
 }
@@ -508,7 +589,7 @@ function logoutAuth(){loggedInRole='';curSection='dashboard';switchTab('home')}
 // ---------- অ্যাডমিন ডাটা ----------
 async function loadAdminDashboard(){
 const [ds,rs]=await Promise.all([rtdb.ref('donors').once('value'),rtdb.ref('requests').once('value')]);
-if(isAdmin())await loadManagers();
+if(isAdmin()){await loadManagers();await loadDonations()}
 allDonorsCache=[];ds.forEach(c=>{allDonorsCache.push({id:c.key,...c.val()})});
 allRequestsCache=[];rs.forEach(c=>{allRequestsCache.push({id:c.key,...c.val()})});allRequestsCache.reverse();
 document.getElementById('dashTotalDonors').innerText=allDonorsCache.length;
@@ -518,11 +599,12 @@ switchAdminSection(curSection);
 }
 
 function switchAdminSection(section){
-if(section==='managers'&&!isAdmin())section='dashboard';
+if((section==='managers'||section==='donations')&&!isAdmin())section='dashboard';
 curSection=section;
-['dashboard','tables','managers'].forEach(s=>document.getElementById('adminSec-'+s).classList.add('hidden'));
+['dashboard','tables','managers','donations'].forEach(s=>document.getElementById('adminSec-'+s).classList.add('hidden'));
 Object.entries(NAV).forEach(([k,id])=>{const b=document.getElementById(id);if(!b)return;const on=k===section;b.classList.toggle('bg-brand-red',on);b.classList.toggle('text-white',on);b.classList.toggle('text-gray-600',!on)});
 if(section==='dashboard'){document.getElementById('adminSec-dashboard').classList.remove('hidden');return drawDashExtra()}
+if(section==='donations'){document.getElementById('adminSec-donations').classList.remove('hidden');return drawDonations()}
 if(section==='managers'){document.getElementById('adminSec-managers').classList.remove('hidden');return renderManagerAdminList()}
 document.getElementById('adminSec-tables').classList.remove('hidden');
 if(section==='requests'){baseList=allRequestsCache;baseKind='requests';baseTitle='রক্তের অনুরোধ ও স্ট্যাটাস';activeGroup='all';document.getElementById('adminSearch').value='';drawChips();return drawRequests()}
@@ -538,7 +620,7 @@ const cnt=g=>allDonorsCache.filter(d=>d.group===g).length,mx=Math.max(1,...GROUP
 const ready=allDonorsCache.filter(d=>eligInfo(d.lastDonate).ready).length;
 const pend=allRequestsCache.filter(r=>r.status!=='সম্পন্ন').length,done=allRequestsCache.length-pend;
 const st=(n,l,c)=>`<div class="glass-card p-4 rounded-2xl"><h4 class="text-2xl font-black ${c}">${bn(n)}</h4><p class="text-[11px] text-gray-500 font-bold">${l}</p></div>`;
-el.innerHTML=`<div class="grid grid-cols-3 gap-3 text-center">${st(ready,'প্রস্তুত ডোনার','text-green-600')}${st(pend,'অপেক্ষমাণ অনুরোধ','text-amber-600')}${st(done,'সম্পন্ন অনুরোধ','text-blue-600')}</div>
+el.innerHTML=`<div class="grid ${isAdmin()?'grid-cols-2 sm:grid-cols-4':'grid-cols-3'} gap-3 text-center">${st(ready,'প্রস্তুত ডোনার','text-green-600')}${st(pend,'অপেক্ষমাণ অনুরোধ','text-amber-600')}${st(done,'সম্পন্ন অনুরোধ','text-blue-600')}${isAdmin()?`<div class="glass-card p-4 rounded-2xl"><h4 class="text-2xl font-black text-amber-700">${money(sumConfirmed())}</h4><p class="text-[11px] text-gray-500 font-bold">নিশ্চিত ডোনেশন</p></div>`:''}</div>
 <div class="glass-card p-6 rounded-3xl"><h4 class="font-bold text-sm text-gray-800 mb-3"><i class="fa-solid fa-droplet text-brand-red mr-1"></i> রক্তের গ্রুপ অনুযায়ী ডোনার</h4>
 <div class="space-y-2">${GROUPS.map(g=>`<div class="flex items-center gap-3 text-xs"><span class="w-9 font-black text-brand-red">${g}</span><div class="bar flex-1"><i style="width:${cnt(g)/mx*100}%"></i></div><span class="w-6 text-right font-bold text-gray-600">${bn(cnt(g))}</span></div>`).join('')}</div></div>`;
 }
@@ -711,12 +793,164 @@ if(confirm('এই ম্যানেজার ডিলিট করবেন?'
 }
 
 // ---------- PDF ও স্ট্যাটস ----------
-function exportToPDF(){
-html2canvas(document.getElementById('pdfPrintArea'),{scale:2,useCORS:true}).then(c=>{
-const pdf=new jspdf.jsPDF('p','mm','a4'),w=190,h=c.height*w/c.width;
-pdf.addImage(c.toDataURL('image/png'),'PNG',10,10,w,h);pdf.save('Pranbindu_Report.pdf');
-});
+// ---------- সুন্দর PDF (অফিসিয়াল প্যাড স্টাইল, রক্তের গ্রুপ অনুযায়ী) ----------
+const pdfAddr=d=>[d.presAddress,d.union].filter((v,i,a)=>v&&a.indexOf(v)===i).join(', ')||'—';
+const pdfHead=()=>`<div class="pdf-top"></div><div class="pdf-head"><img class="logo" crossorigin="anonymous" src="${LOGO_URL}" onerror="this.onerror=null;this.src=DROP"><div><h1>প্রাণবিন্দু</h1><p class="tag">বড়াইগ্রাম উপজেলার প্রথম স্মার্ট ব্লাড ডোনার ম্যানেজমেন্ট সিস্টেম</p></div><div class="pdf-contact">জরুরী যোগাযোগ<b>01887488674</b></div></div><div class="pdf-rule"></div>`;
+const pdfRow=(d,n)=>`<tr class="${n%2?'':'alt'}"><td class="c">${bn(n)}</td><td class="nm">${esc(d.name)}</td><td>${esc(pdfAddr(d))}</td><td>${esc(d.phone)}</td><td class="c g">${esc(d.group)}</td></tr>`;
+function pdfBlock(g,total,cont){
+const w=document.createElement('div');w.className='pdf-blk';
+w.innerHTML=`<div class="pdf-grp"><div class="pdf-gname">${esc(g)}</div><div><p class="pdf-gt">রক্তের গ্রুপ: ${esc(g)}${cont?' (চলমান)':''}</p><p class="pdf-gs">মোট রক্তদাতা: ${bn(total)} জন</p></div></div><table class="pdf-tbl"><colgroup><col style="width:9%"><col style="width:25%"><col style="width:33%"><col style="width:19%"><col style="width:14%"></colgroup><thead><tr><th class="c">ক্রমিক</th><th>নাম</th><th>ঠিকানা</th><th>মোবাইল</th><th class="c">রক্তের গ্রুপ</th></tr></thead><tbody></tbody></table>`;
+return w;
 }
+async function exportToPDF(){
+if(pdfBusy)return;
+const view=['ready','donors','eligible'].includes(curSection);
+const list=view?currentDisplayedDonors:allDonorsCache;
+const title=view?baseTitle:'সকল রক্তদাতা';
+if(!list.length)return alert('PDF তৈরির জন্য কোনো রক্তদাতার তথ্য নেই!');
+pdfBusy=true;alert('PDF তৈরি হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...');
+const host=document.createElement('div');host.style.cssText='position:absolute;left:-10000px;top:0';document.body.appendChild(host);
+try{
+try{await Promise.all([400,500,600,700].map(w=>document.fonts.load(w+' 14px "Hind Siliguri"','আকখ Aa1')))}catch(e){}
+const date=new Date().toLocaleDateString('bn-BD',{day:'numeric',month:'long',year:'numeric'});
+const pages=[];
+const mk=()=>{const p=document.createElement('div');p.className='pdf-page';p.innerHTML=pdfHead()+`<img class="pdf-wm" src="${DROP}"><div class="pdf-body"></div><div class="pdf-foot"><span>প্রস্তুতের তারিখ: ${date}</span><span class="pf-n"></span><span>Developed by "Nexis Cyber &amp; Software"</span></div>`;host.appendChild(p);pages.push(p);return p.querySelector('.pdf-body')};
+const cnt=g=>list.filter(d=>d.group===g).length;
+let body=mk();
+body.insertAdjacentHTML('beforeend',`<div class="pdf-meta"><span><b>তালিকা:</b> ${esc(title)}</span><span><b>মোট:</b> ${bn(list.length)} জন</span><span><b>তারিখ:</b> ${date}</span></div><div class="pdf-chips">${GROUPS.filter(g=>cnt(g)).map(g=>`<span>${g}: ${bn(cnt(g))}</span>`).join('')}</div>`);
+for(const g of GROUPS){
+const items=list.filter(d=>d.group===g);if(!items.length)continue;
+let blk=pdfBlock(g,items.length,false);body.appendChild(blk);let tb=blk.querySelector('tbody');
+for(let i=0;i<items.length;i++){
+tb.insertAdjacentHTML('beforeend',pdfRow(items[i],i+1));
+if(body.scrollHeight>body.clientHeight+1){
+tb.lastElementChild.remove();
+const moved=tb.children.length===0;
+if(moved)blk.remove();
+body=mk();blk=pdfBlock(g,items.length,!moved);body.appendChild(blk);tb=blk.querySelector('tbody');
+tb.insertAdjacentHTML('beforeend',pdfRow(items[i],i+1));
+}
+}
+}
+pages.forEach((p,i)=>{p.querySelector('.pf-n').textContent='পৃষ্ঠা '+bn(i+1)+' / '+bn(pages.length)});
+await Promise.all([...host.querySelectorAll('img')].map(im=>im.complete?0:new Promise(r=>{im.addEventListener('load',r);im.addEventListener('error',r)})));
+await document.fonts.ready;
+const pdf=new jspdf.jsPDF('p','mm','a4');
+for(let i=0;i<pages.length;i++){
+const c=await html2canvas(pages[i],{scale:2,useCORS:true,backgroundColor:'#ffffff'});
+if(i)pdf.addPage();
+pdf.addImage(c.toDataURL('image/jpeg',0.93),'JPEG',0,0,210,297);
+}
+pdf.save('Pranbindu_Donor_List_'+new Date().toISOString().slice(0,10)+'.pdf');
+alert('PDF ডাউনলোড শুরু হয়েছে!');
+}catch(err){alert('PDF তৈরিতে সমস্যা: '+err.message)}
+finally{host.remove();pdfBusy=false}
+}
+
+// ---------- ডোনেশন (পাবলিক মডাল + এডমিন) ----------
+const money=n=>'৳'+bn(Number(n||0).toLocaleString('en-IN'));
+const sumConfirmed=()=>allDonationsCache.filter(d=>d.status==='নিশ্চিত').reduce((t,d)=>t+(Number(d.amount)||0),0);
+const copyText=async t=>{try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(_){}a.remove()}};
+async function copyPayNumber(){await copyText(PAY_NUMBER);alert('নম্বর কপি হয়েছে: '+PAY_NUMBER)}
+
+const donateHTML=()=>`
+<div class="bg-gradient-to-br from-rose-600 via-red-600 to-amber-600 text-white text-center p-6 pt-8">
+<div class="w-14 h-14 mx-auto rounded-full bg-white/20 grid place-items-center text-2xl"><i class="fa-solid fa-hand-holding-heart"></i></div>
+<h3 class="text-xl font-black mt-3">প্রাণবিন্দুকে সহায়তা করুন</h3>
+<p class="text-xs opacity-90 font-medium mt-1">আপনার ছোট্ট দান একজন রোগীর জীবন বাঁচাতে সাহায্য করবে</p></div>
+<div class="p-5 space-y-5">
+<div class="space-y-2"><h4 class="text-xs font-black text-gray-800"><i class="fa-solid fa-list-check text-brand-red mr-1"></i> এই টাকা কিভাবে খরচ হবে?</h4>
+${DONATION_USES.map(u=>`<div class="flex items-start gap-3 bg-gray-50 rounded-2xl p-3"><span class="w-9 h-9 rounded-xl grid place-items-center shrink-0 ${u.c}"><i class="fa-solid ${u.i}"></i></span><p class="text-[11.5px] font-semibold text-gray-700 leading-relaxed">${u.t}</p></div>`).join('')}
+<p class="text-[10.5px] text-gray-500 font-medium leading-relaxed">রক্তের সেবা সম্পূর্ণ বিনামূল্যে — ডোনেশন সম্পূর্ণ ঐচ্ছিক। প্রতিটি ডোনেশন প্রাণবিন্দুর রেকর্ডে যুক্ত হবে এবং এডমিন যাচাই করে নিশ্চিত করবেন।</p></div>
+<div class="space-y-2"><h4 class="text-xs font-black text-gray-800"><i class="fa-solid fa-paper-plane text-brand-green mr-1"></i> ডোনেশন পাঠানোর নম্বর</h4>
+<div class="rounded-2xl p-4 text-white" style="background:linear-gradient(135deg,#1F2937,#111827)">
+<div class="flex items-center justify-between"><span class="text-[11px] font-bold opacity-80">সেন্ড মানি (Send Money)</span><span class="flex gap-1"><b class="px-2 py-0.5 rounded-md text-[10px]" style="background:#E2136E">বিকাশ</b><b class="px-2 py-0.5 rounded-md text-[10px]" style="background:#F6921E">নগদ</b></span></div>
+<p class="text-[26px] font-black tracking-widest mt-3 select-all">${PAY_NUMBER}</p>
+<button onclick="copyPayNumber()" class="mt-3 w-full bg-white text-gray-900 py-2.5 rounded-xl text-xs font-bold"><i class="fa-solid fa-copy mr-1"></i> নম্বর কপি করুন</button></div>
+<ol class="text-[11px] text-gray-600 font-semibold space-y-1 pl-1"><li>১. বিকাশ বা নগদ অ্যাপে <b>Send Money</b> অপশন বেছে নিন।</li><li>২. উপরের নম্বরে আপনার ইচ্ছামতো টাকা পাঠান।</li><li>৩. নিচের ফর্মে পরিমাণ ও ট্রানজ্যাকশন আইডি জমা দিন।</li></ol></div>
+<div class="space-y-3"><h4 class="text-xs font-black text-gray-800"><i class="fa-solid fa-pen-to-square text-brand-red mr-1"></i> ডোনেশনের তথ্য জমা দিন</h4>
+<div><label class="block text-xs font-bold text-gray-700 mb-1.5">পরিমাণ (৳) *</label>
+<div class="flex flex-wrap gap-2 mb-2">${[50,100,200,500,1000].map(n=>`<button type="button" data-amt="${n}" onclick="pickAmount(${n})" class="chip">৳${bn(n)}</button>`).join('')}</div>
+<input type="number" id="donAmount" min="10" oninput="syncChips()" class="glass-input w-full rounded-xl p-3 text-sm font-medium" placeholder="অন্য পরিমাণ লিখুন"></div>
+<div><label class="block text-xs font-bold text-gray-700 mb-1.5">মাধ্যম</label>
+<div class="flex gap-2">${['বিকাশ','নগদ'].map(m=>`<button type="button" data-m="${m}" onclick="pickMethod('${m}')" class="chip flex-1" style="padding:10px">${m}</button>`).join('')}</div></div>
+<div><label class="block text-xs font-bold text-gray-700 mb-1.5">ট্রানজ্যাকশন আইডি (ঐচ্ছিক)</label><input type="text" id="donTrx" class="glass-input w-full rounded-xl p-3 text-sm font-medium" placeholder="যেমন: 8N7A6D5EC3"></div>
+<button type="button" onclick="toggleAnon()" class="w-full flex items-center justify-between gap-3 rounded-2xl border-2 border-gray-200 p-3 text-left"><div><p class="text-xs font-black text-gray-800"><i class="fa-solid fa-user-secret text-gray-600 mr-1"></i> আমার পরিচয় গোপন রাখুন</p><p class="text-[10px] text-gray-500 font-medium mt-0.5">চালু করলে নাম ও মোবাইল নম্বর লাগবে না</p></div><span id="anonTrack" class="relative shrink-0 rounded-full transition" style="width:44px;height:24px;background:#CBD5E1"><i id="anonKnob" class="absolute bg-white rounded-full shadow transition" style="top:2px;left:2px;width:20px;height:20px"></i></span></button>
+<p id="anonNote" class="text-[10.5px] text-green-700 font-bold leading-relaxed" style="display:none">✔ আপনার নাম ও মোবাইল নম্বর সংগ্রহ বা সংরক্ষণ করা হবে না। শুধু পরিমাণ, মাধ্যম ও ট্রানজ্যাকশন আইডি রেকর্ড হবে।</p>
+<div id="donIdent" class="grid grid-cols-1 sm:grid-cols-2 gap-3"><input type="text" id="donName" class="glass-input w-full rounded-xl p-3 text-sm font-medium" placeholder="আপনার নাম *"><input type="tel" id="donPhone" class="glass-input w-full rounded-xl p-3 text-sm font-medium" placeholder="মোবাইল (ঐচ্ছিক)"></div>
+<button type="button" id="donSubmit" onclick="submitDonation()" class="w-full btn-glow-red text-white py-3.5 rounded-xl font-bold text-sm">ডোনেশন জমা দিন</button></div>
+</div>`;
+function openDonate(){donMethod='বিকাশ';donAnon=false;document.getElementById('donateContent').innerHTML=donateHTML();pickMethod('বিকাশ');paintAnon();document.getElementById('donateModal').classList.remove('hidden')}
+function closeDonate(){document.getElementById('donateModal').classList.add('hidden')}
+function syncChips(){const v=document.getElementById('donAmount').value;document.querySelectorAll('[data-amt]').forEach(b=>b.classList.toggle('on',b.dataset.amt===v))}
+function pickAmount(n){document.getElementById('donAmount').value=n;syncChips()}
+function pickMethod(m){donMethod=m;document.querySelectorAll('[data-m]').forEach(b=>b.classList.toggle('on',b.dataset.m===m))}
+function paintAnon(){
+document.getElementById('anonTrack').style.background=donAnon?'#2E7D32':'#CBD5E1';
+document.getElementById('anonKnob').style.transform=donAnon?'translateX(20px)':'none';
+document.getElementById('donIdent').style.display=donAnon?'none':'grid';
+document.getElementById('anonNote').style.display=donAnon?'block':'none';
+}
+function toggleAnon(){donAnon=!donAnon;paintAnon()}
+async function submitDonation(){
+const amount=Math.round(Number(document.getElementById('donAmount').value));
+if(!amount||amount<10)return alert('ন্যূনতম ১০ টাকা ডোনেশনের পরিমাণ দিন!');
+let name='',phone='';
+if(!donAnon){
+name=document.getElementById('donName').value.trim();phone=document.getElementById('donPhone').value.trim();
+if(!name)return alert('আপনার নাম লিখুন অথবা পরিচয় গোপন রাখুন!');
+if(phone&&!/^[0-9]{11}$/.test(phone))return alert('মোবাইল নম্বর ১১ ডিজিটের হতে হবে!');
+}
+const btn=document.getElementById('donSubmit');btn.disabled=true;
+try{
+await rtdb.ref('donations').push({name,phone,amount,method:donMethod,trxId:document.getElementById('donTrx').value.trim().toUpperCase(),anonymous:donAnon,note:'',status:'যাচাই বাকি',source:'public',createdAt:new Date().toISOString()});
+document.getElementById('donateContent').innerHTML=`<div class="p-8 pt-10 text-center space-y-3"><div class="w-16 h-16 mx-auto rounded-full bg-green-100 text-brand-green grid place-items-center text-3xl"><i class="fa-solid fa-circle-check"></i></div><h3 class="text-xl font-black text-brand-green">ধন্যবাদ!</h3><p class="text-xs text-gray-600 font-medium leading-relaxed">আপনার ডোনেশনের তথ্য জমা হয়েছে। এডমিন যাচাই করে নিশ্চিত করবেন। আপনার সহায়তায় আমরা আরও মানুষের পাশে দাঁড়াতে পারব।</p><button onclick="closeDonate()" class="btn-glow-green text-white px-8 py-3 rounded-xl text-xs font-bold">বন্ধ করুন</button></div>`;
+}catch(err){alert('ডোনেশন জমা দিতে সমস্যা: '+err.message);btn.disabled=false}
+}
+
+async function loadDonations(){
+const s=await rtdb.ref('donations').once('value');
+allDonationsCache=[];s.forEach(c=>{allDonationsCache.push({id:c.key,...c.val()})});
+allDonationsCache.sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));
+}
+function setDonFilter(f){donFilter=f;drawDonations()}
+function drawDonations(){
+const L=allDonationsCache,pend=L.filter(d=>d.status!=='নিশ্চিত').length;
+document.getElementById('donSumConfirmed').innerText=money(sumConfirmed());
+document.getElementById('donSumPending').innerText=bn(pend);
+document.getElementById('donSumCount').innerText=bn(L.length);
+document.getElementById('donChips').innerHTML=[['all','সব'],['যাচাই বাকি','যাচাই বাকি'],['নিশ্চিত','নিশ্চিত']].map(([k,t])=>`<button class="chip ${k===donFilter?'on':''}" onclick="setDonFilter('${k}')">${t}</button>`).join('');
+const dt=document.getElementById('aDonDate');if(!dt.value)dt.value=new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
+const list=L.filter(d=>donFilter==='all'||(donFilter==='নিশ্চিত'?d.status==='নিশ্চিত':d.status!=='নিশ্চিত'));
+document.getElementById('donTableBody').innerHTML=list.map(d=>{
+const ok=d.status==='নিশ্চিত';
+return `<tr>
+<td class="p-3"><p class="font-bold">${new Date(d.createdAt).toLocaleDateString('bn-BD',{day:'numeric',month:'short',year:'numeric'})}</p><p class="text-[10px] text-gray-400">${ago(d.createdAt)}</p></td>
+<td class="p-3">${d.anonymous?'<span class="bg-gray-100 text-gray-600 font-bold px-2 py-0.5 rounded-lg text-[11px]"><i class="fa-solid fa-user-secret mr-1"></i>গোপন দাতা</span>':`<p class="font-bold">${esc(d.name||'—')}</p><p class="text-[10px] text-gray-400">${esc(d.phone)}</p>`}${d.note?`<p class="text-[10px] text-gray-500">${esc(d.note)}</p>`:''}</td>
+<td class="p-3 font-black text-amber-700">${money(d.amount)}</td>
+<td class="p-3 text-[11px] font-semibold">${esc(d.method)}<p class="text-[10px] text-gray-400 font-medium">${esc(d.trxId||'—')}</p></td>
+<td class="p-3"><span class="${ok?'bg-green-100 text-green-700':'bg-amber-100 text-amber-800'} px-2 py-0.5 rounded-lg font-bold text-[10px]">${esc(d.status||'যাচাই বাকি')}</span></td>
+<td class="p-3 whitespace-nowrap space-x-1">${ok?`<button onclick="setDonationStatus('${d.id}','যাচাই বাকি')" title="যাচাই বাকিতে ফেরত" class="act bg-amber-100 text-amber-700"><i class="fa-solid fa-rotate-left"></i></button>`:`<button onclick="setDonationStatus('${d.id}','নিশ্চিত')" title="নিশ্চিত করুন" class="act bg-green-100 text-green-700"><i class="fa-solid fa-check"></i></button>`}<button onclick="deleteDonation('${d.id}')" title="ডিলিট" class="act bg-red-100 text-red-600"><i class="fa-solid fa-trash"></i></button></td></tr>`;
+}).join('')||'<tr><td colspan="6" class="p-8 text-center text-gray-400 font-semibold">কোনো ডোনেশন নেই</td></tr>';
+}
+function aDonAnonChange(){const on=document.getElementById('aDonAnon').checked;['aDonName','aDonPhone'].forEach(id=>{const e=document.getElementById(id);e.disabled=on;if(on)e.value=''})}
+async function saveAdminDonation(){
+if(!isAdmin())return;
+const amount=Math.round(Number(document.getElementById('aDonAmount').value));
+if(!amount||amount<1)return alert('ডোনেশনের পরিমাণ দিন!');
+const anon=document.getElementById('aDonAnon').checked,dv=document.getElementById('aDonDate').value;
+await rtdb.ref('donations').push({
+name:anon?'':document.getElementById('aDonName').value.trim(),phone:anon?'':document.getElementById('aDonPhone').value.trim(),
+amount,method:document.getElementById('aDonMethod').value,trxId:document.getElementById('aDonTrx').value.trim().toUpperCase(),
+anonymous:anon,note:document.getElementById('aDonNote').value.trim(),status:'নিশ্চিত',source:'admin',
+createdAt:dv?new Date(dv+'T12:00:00').toISOString():new Date().toISOString()
+});
+['aDonName','aDonPhone','aDonAmount','aDonTrx','aDonNote'].forEach(id=>{const e=document.getElementById(id);e.value='';e.disabled=false});
+document.getElementById('aDonAnon').checked=false;
+alert('ডোনেশন এন্ট্রি সেভ হয়েছে!');loadAdminDashboard();
+}
+async function setDonationStatus(id,status){if(!isAdmin())return;await rtdb.ref('donations/'+id).update({status});alert('স্ট্যাটাস আপডেট হয়েছে!');loadAdminDashboard()}
+async function deleteDonation(id){if(!isAdmin())return;if(confirm('এই ডোনেশন এন্ট্রি ডিলিট করবেন?')){await rtdb.ref('donations/'+id).remove();loadAdminDashboard()}}
 async function loadStats(){
 try{
 const [d,r]=await Promise.all([rtdb.ref('donors').once('value'),rtdb.ref('requests').once('value')]);
